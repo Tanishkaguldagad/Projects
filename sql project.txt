@@ -1,0 +1,885 @@
+
+mysql> use sep25
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_sep25 |
++-----------------+
+| account         |
+| book            |
+| dept            |
+| employee        |
+| project_details |
+| student         |
++-----------------+
+6 rows in set (0.02 sec)
+
+mysql> Create table Patient_Details
+    ->  (Patient_ID Int PRIMARY KEY,
+    ->     Name Varchar(100),
+    ->     Gender Varchar(1),
+    ->     Age Int,
+    ->     Date_of_Birth Date,
+    ->     Address Varchar(200),
+    ->     Contact_Number Varchar(12),
+    ->     Email Varchar(100),
+    ->     Insurance_ID Varchar(50),
+    ->     Blood_Group Varchar(5));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql>  insert into Patient_Details(Patient_id,name,gender,age,address,contact_number,Date_of_Birth,Email,Insurance_ID,Blood_Group)
+    ->     VALUES
+    ->      ('001', 'Aarav Sharma', 'M', 25, 'Mumbai, MH', '9876543210', '2000-04-15', 'aarav.sharma@gmail.com', 'INS001', 'B+'),
+    ->      ('002', 'Priya Patel', 'F', 28, 'Ahmedabad, GJ', '9823124567', '1997-06-12', 'priya.patel@gmail.com', 'INS002', 'O+'),
+    ->      ('003', 'Rohan Mehta', 'M', 32, 'Pune, MH', '9765432109', '1993-09-25', 'rohan.mehta@yahoo.com', 'INS003', 'A+'),
+    ->      ('004', 'Neha Singh', 'F', 30, 'Delhi', '9812345670', '1995-05-03', 'neha.singh@gmail.com', 'INS004', 'AB+'),
+    ->      ('005', 'Aditya Verma', 'M', 22, 'Lucknow, UP', '9887766554', '2003-02-18', 'aditya.verma@gmail.com', 'INS005', 'O-'),
+    ->      ('006', 'Ishita Nair', 'F', 27, 'Kochi, KL', '9798654321', '1998-08-08', 'ishita.nair@gmail.com', 'INS006', 'A-'),
+    ->      ('007', 'Karan Gupta', 'M', 35, 'Jaipur, RJ', '9822334455', '1990-12-22', 'karan.gupta@gmail.com', 'INS007', 'B+'),
+    ->      ('008', 'Simran Kaur', 'F', 24, 'Chandigarh', '9771122334', '2001-07-14', 'simran.kaur@gmail.com', 'INS008', 'O+'),
+    ->      ('009', 'Rahul Das', 'M', 29, 'Kolkata, WB', '9833445566', '1996-03-09', 'rahul.das@gmail.com', 'INS009', 'A+'),
+    ->      ('010', 'Sneha Reddy', 'F', 31, 'Hyderabad, TS', '9900123456', '1994-10-05', 'sneha.reddy@gmail.com', 'INS010', 'AB-'),
+    ->      ('011', 'Vivek Kumar', 'M', 40, 'Patna, BR', '9810012345', '1985-01-28', 'vivek.kumar@gmail.com', 'INS011', 'O+'),
+    ->      ('012', 'Meera Iyer', 'F', 26, 'Chennai, TN', '9890123412', '1999-05-19', 'meera.iyer@gmail.com', 'INS012', 'B-'),
+    ->      ('013', 'Rajesh Yadav', 'M', 38, 'Kanpur, UP', '9880098776', '1987-09-03', 'rajesh.yadav@gmail.com', 'INS013', 'A+'),
+    ->      ('014', 'Pooja Bhat', 'F', 33, 'Bengaluru, KA', '9745543321', '1992-06-22', 'pooja.bhat@gmail.com', 'INS014', 'O-'),
+    ->      ('015', 'Sandeep Roy', 'M', 42, 'Guwahati, AS', '9876567890', '1983-04-10', 'sandeep.roy@gmail.com', 'INS015', 'AB+'),
+    ->      ('016', 'Kavita Joshi', 'F', 37, 'Dehradun, UK', '9811234567', '1988-11-30', 'kavita.joshi@gmail.com', 'INS016', 'B+'),
+    ->      ('017', 'Manish Pandey', 'M', 45, 'Varanasi, UP', '9898989898', '1980-02-20', 'manish.pandey@gmail.com', 'INS017', 'O+'),
+    ->      ('018', 'Anjali Deshmukh', 'F', 34, 'Nashik, MH', '9756677889', '1991-07-11', 'anjali.deshmukh@gmail.com', 'INS018', 'A-'),
+    ->      ('019', 'Deepak Chawla', 'M', 28, 'Indore, MP', '9911223344', '1997-03-25', 'deepak.chawla@gmail.com', 'INS019', 'B+'),
+    ->      ('020', 'Ritu Jain', 'F', 29, 'Bhopal, MP', '9822123432', '1996-12-19', 'ritu.jain@gmail.com', 'INS020', 'O+'),
+    ->      ('021', 'Harsh Sharma', 'M', 23, 'Nagpur, MH', '9743210987', '2002-08-03', 'harsh.sharma@gmail.com', 'INS021', 'A+'),
+    ->      ('022', 'Tanya Paul', 'F', 27, 'Siliguri, WB', '9810099887', '1998-10-25', 'tanya.paul@gmail.com', 'INS022', 'AB+'),
+    ->      ('023', 'Mohit Jain', 'M', 33, 'Delhi', '9912345678', '1992-09-02', 'mohit.jain@gmail.com', 'INS023', 'B-'),
+    ->      ('024', 'Shruti Kulkarni', 'F', 36, 'Pune, MH', '9777788899', '1989-06-18', 'shruti.kulkarni@gmail.com', 'INS024', 'O+'),
+    ->      ('025', 'Nikhil Patel', 'M', 30, 'Surat, GJ', '9867788990', '1995-01-11', 'nikhil.patel@gmail.com', 'INS025', 'AB+'),
+    ->      ('026', 'Aisha Khan', 'F', 25, 'Delhi', '9800012345', '2000-09-15', 'aisha.khan@gmail.com', 'INS026', 'A+');
+Query OK, 26 rows affected (0.03 sec)
+Records: 26  Duplicates: 0  Warnings: 0
+
+mysql> DESC PATIENT_DETAILS;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| Patient_ID     | int          | NO   | PRI | NULL    |       |
+| Name           | varchar(100) | YES  |     | NULL    |       |
+| Gender         | varchar(1)   | YES  |     | NULL    |       |
+| Age            | int          | YES  |     | NULL    |       |
+| Date_of_Birth  | date         | YES  |     | NULL    |       |
+| Address        | varchar(200) | YES  |     | NULL    |       |
+| Contact_Number | varchar(12)  | YES  |     | NULL    |       |
+| Email          | varchar(100) | YES  |     | NULL    |       |
+| Insurance_ID   | varchar(50)  | YES  |     | NULL    |       |
+| Blood_Group    | varchar(5)   | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> TABLE PATIENT_DETAILS;
++------------+-----------------+--------+------+---------------+---------------+----------------+---------------------------+--------------+-------------+
+| Patient_ID | Name            | Gender | Age  | Date_of_Birth | Address       | Contact_Number | Email                     | Insurance_ID | Blood_Group |
++------------+-----------------+--------+------+---------------+---------------+----------------+---------------------------+--------------+-------------+
+|          1 | Aarav Sharma    | M      |   25 | 2000-04-15    | Mumbai, MH    | 9876543210     | aarav.sharma@gmail.com    | INS001       | B+          |
+|          2 | Priya Patel     | F      |   28 | 1997-06-12    | Ahmedabad, GJ | 9823124567     | priya.patel@gmail.com     | INS002       | O+          |
+|          3 | Rohan Mehta     | M      |   32 | 1993-09-25    | Pune, MH      | 9765432109     | rohan.mehta@yahoo.com     | INS003       | A+          |
+|          4 | Neha Singh      | F      |   30 | 1995-05-03    | Delhi         | 9812345670     | neha.singh@gmail.com      | INS004       | AB+         |
+|          5 | Aditya Verma    | M      |   22 | 2003-02-18    | Lucknow, UP   | 9887766554     | aditya.verma@gmail.com    | INS005       | O-          |
+|          6 | Ishita Nair     | F      |   27 | 1998-08-08    | Kochi, KL     | 9798654321     | ishita.nair@gmail.com     | INS006       | A-          |
+|          7 | Karan Gupta     | M      |   35 | 1990-12-22    | Jaipur, RJ    | 9822334455     | karan.gupta@gmail.com     | INS007       | B+          |
+|          8 | Simran Kaur     | F      |   24 | 2001-07-14    | Chandigarh    | 9771122334     | simran.kaur@gmail.com     | INS008       | O+          |
+|          9 | Rahul Das       | M      |   29 | 1996-03-09    | Kolkata, WB   | 9833445566     | rahul.das@gmail.com       | INS009       | A+          |
+|         10 | Sneha Reddy     | F      |   31 | 1994-10-05    | Hyderabad, TS | 9900123456     | sneha.reddy@gmail.com     | INS010       | AB-         |
+|         11 | Vivek Kumar     | M      |   40 | 1985-01-28    | Patna, BR     | 9810012345     | vivek.kumar@gmail.com     | INS011       | O+          |
+|         12 | Meera Iyer      | F      |   26 | 1999-05-19    | Chennai, TN   | 9890123412     | meera.iyer@gmail.com      | INS012       | B-          |
+|         13 | Rajesh Yadav    | M      |   38 | 1987-09-03    | Kanpur, UP    | 9880098776     | rajesh.yadav@gmail.com    | INS013       | A+          |
+|         14 | Pooja Bhat      | F      |   33 | 1992-06-22    | Bengaluru, KA | 9745543321     | pooja.bhat@gmail.com      | INS014       | O-          |
+|         15 | Sandeep Roy     | M      |   42 | 1983-04-10    | Guwahati, AS  | 9876567890     | sandeep.roy@gmail.com     | INS015       | AB+         |
+|         16 | Kavita Joshi    | F      |   37 | 1988-11-30    | Dehradun, UK  | 9811234567     | kavita.joshi@gmail.com    | INS016       | B+          |
+|         17 | Manish Pandey   | M      |   45 | 1980-02-20    | Varanasi, UP  | 9898989898     | manish.pandey@gmail.com   | INS017       | O+          |
+|         18 | Anjali Deshmukh | F      |   34 | 1991-07-11    | Nashik, MH    | 9756677889     | anjali.deshmukh@gmail.com | INS018       | A-          |
+|         19 | Deepak Chawla   | M      |   28 | 1997-03-25    | Indore, MP    | 9911223344     | deepak.chawla@gmail.com   | INS019       | B+          |
+|         20 | Ritu Jain       | F      |   29 | 1996-12-19    | Bhopal, MP    | 9822123432     | ritu.jain@gmail.com       | INS020       | O+          |
+|         21 | Harsh Sharma    | M      |   23 | 2002-08-03    | Nagpur, MH    | 9743210987     | harsh.sharma@gmail.com    | INS021       | A+          |
+|         22 | Tanya Paul      | F      |   27 | 1998-10-25    | Siliguri, WB  | 9810099887     | tanya.paul@gmail.com      | INS022       | AB+         |
+|         23 | Mohit Jain      | M      |   33 | 1992-09-02    | Delhi         | 9912345678     | mohit.jain@gmail.com      | INS023       | B-          |
+|         24 | Shruti Kulkarni | F      |   36 | 1989-06-18    | Pune, MH      | 9777788899     | shruti.kulkarni@gmail.com | INS024       | O+          |
+|         25 | Nikhil Patel    | M      |   30 | 1995-01-11    | Surat, GJ     | 9867788990     | nikhil.patel@gmail.com    | INS025       | AB+         |
+|         26 | Aisha Khan      | F      |   25 | 2000-09-15    | Delhi         | 9800012345     | aisha.khan@gmail.com      | INS026       | A+          |
++------------+-----------------+--------+------+---------------+---------------+----------------+---------------------------+--------------+-------------+
+26 rows in set (0.01 sec)
+mysql> show tables
+    -> ;
++-----------------+
+| Tables_in_sep25 |
++-----------------+
+| account         |
+| book            |
+| dept            |
+| employee        |
+| patient_details |
+| project_details |
+| student         |
++-----------------+
+7 rows in set (0.10 sec)
+
+
+
+
+
+mysql> CREATE TABLE Doctors (
+    ->     DoctorID INT PRIMARY KEY ,
+    ->     DoctorName VARCHAR(100) ,
+    ->     Gender VARCHAR(10),
+    ->     Specialization VARCHAR(100),
+    ->     Qualification VARCHAR(100),
+    ->     ContactNumber VARCHAR(15),
+    ->     Email VARCHAR(100),
+    ->     ExperienceYears INT,
+    ->     Address VARCHAR(255),
+    ->     JoiningDate DATE
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Doctors
+    -> (DoctorID, DoctorName, Gender, Specialization, Qualification, ContactNumber, Email, ExperienceYears, Address, JoiningDate)
+    -> VALUES
+    -> (1, 'Dr. Arvind Bhattacharya', 'Male', 'Cardiologist', 'MBBS, MD', '9876012345', 'arvind.bhattacharya@hospital.com', 14, 'Kolkata, West Bengal', '2011-05-14'),
+    -> (2, 'Dr. Seema Raghavan', 'Female', 'Dermatologist', 'MBBS, MD', '9765123489', 'seema.raghavan@hospital.com', 11, 'Chennai, Tamil Nadu', '2013-07-20'),
+    -> (3, 'Dr. Prakash Naidu', 'Male', 'Orthopedic Surgeon', 'MBBS, MS', '9945236789', 'prakash.naidu@hospital.com', 15, 'Bengaluru, Karnataka', '2010-11-03'),
+    -> (4, 'Dr. Lata Venkatesh', 'Female', 'Gynecologist', 'MBBS, MD', '9823415670', 'lata.venkatesh@hospital.com', 9, 'Hyderabad, Telangana', '2016-02-10'),
+    -> (5, 'Dr. Naveen Chopra', 'Male', 'Neurologist', 'MBBS, DM', '9012378956', 'naveen.chopra@hospital.com', 12, 'Delhi', '2012-10-25'),
+    -> (6, 'Dr. Shalini Suresh', 'Female', 'Pediatrician', 'MBBS, MD', '9456217890', 'shalini.suresh@hospital.com', 10, 'Kochi, Kerala', '2015-08-15'),
+    -> (7, 'Dr. Anil Dey', 'Male', 'Urologist', 'MBBS, MS', '9345689012', 'anil.dey@hospital.com', 13, 'Guwahati, Assam', '2011-03-07'),
+    -> (8, 'Dr. Neeta Gaur', 'Female', 'Endocrinologist', 'MBBS, DM', '9435612789', 'neeta.gaur@hospital.com', 8, 'Jaipur, Rajasthan', '2018-06-11'),
+    -> (9, 'Dr. Vinod Malhotra', 'Male', 'Radiologist', 'MBBS, MD', '9356127890', 'vinod.malhotra@hospital.com', 16, 'Lucknow, Uttar Pradesh', '2009-09-19'),
+    -> (10, 'Dr. Harini Raj', 'Female', 'ENT Specialist', 'MBBS, MS', '9123456798', 'harini.raj@hospital.com', 6, 'Coimbatore, Tamil Nadu', '2019-12-01'),
+    -> (11, 'Dr. Arpit Bajaj', 'Male', 'Pulmonologist', 'MBBS, MD', '9890054321', 'arpit.bajaj@hospital.com', 11, 'Bhopal, Madhya Pradesh', '2014-04-09'),
+    -> (12, 'Dr. Rachita Ghosh', 'Female', 'Oncologist', 'MBBS, DM', '9978654321', 'rachita.ghosh@hospital.com', 9, 'Kolkata, West Bengal', '2016-07-20'),
+    -> (13, 'Dr. Rajeev Pillai', 'Male', 'Gastroenterologist', 'MBBS, DM', '9786541230', 'rajeev.pillai@hospital.com', 10, 'Trivandrum, Kerala', '2015-03-03'),
+    -> (14, 'Dr. Bhavna Agarwal', 'Female', 'Ophthalmologist', 'MBBS, MS', '9567890345', 'bhavna.agarwal@hospital.com', 7, 'Indore, Madhya Pradesh', '2019-01-27'),
+    -> (15, 'Dr. Kunal Shetty', 'Male', 'Dentist', 'BDS, MDS', '9123409876', 'kunal.shetty@hospital.com', 5, 'Mangalore, Karnataka', '2020-09-15'),
+    -> (16, 'Dr. Ramesh Yadav', 'Male', 'Psychiatrist', 'MBBS, MD', '9223344112', 'ramesh.yadav@hospital.com', 12, 'Patna, Bihar', '2012-06-19'),
+    -> (17, 'Dr. Aditi Bhandari', 'Female', 'General Surgeon', 'MBBS, MS', '9321789054', 'aditi.bhandari@hospital.com', 10, 'Delhi', '2015-08-10'),
+    -> (18, 'Dr. Suresh Nambiar', 'Male', 'Nephrologist', 'MBBS, DM', '9456789012', 'suresh.nambiar@hospital.com', 14, 'Chennai, Tamil Nadu', '2011-04-02'),
+    -> (19, 'Dr. Karishma Patel', 'Female', 'Anesthesiologist', 'MBBS, MD', '9334678901', 'karishma.patel@hospital.com', 9, 'Ahmedabad, Gujarat', '2016-12-14'),
+    -> (20, 'Dr. Pankaj Sinha', 'Male', 'Pathologist', 'MBBS, MD', '9556723489', 'pankaj.sinha@hospital.com', 13, 'Ranchi, Jharkhand', '2012-09-09'),
+    -> (21, 'Dr. Shruti Deshmukh', 'Female', 'Dermatologist', 'MBBS, MD', '9765123490', 'shruti.deshmukh@hospital.com', 6, 'Nagpur, Maharashtra', '2019-05-23'),
+    -> (22, 'Dr. Amarjeet Gill', 'Male', 'Cardiothoracic Surgeon', 'MBBS, MS, MCh', '9876123409', 'amarjeet.gill@hospital.com', 17, 'Amritsar, Punjab', '2008-02-14');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> desc doctors;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| DoctorID        | int          | NO   | PRI | NULL    |       |
+| DoctorName      | varchar(100) | YES  |     | NULL    |       |
+| Gender          | varchar(10)  | YES  |     | NULL    |       |
+| Specialization  | varchar(100) | YES  |     | NULL    |       |
+| Qualification   | varchar(100) | YES  |     | NULL    |       |
+| ContactNumber   | varchar(15)  | YES  |     | NULL    |       |
+| Email           | varchar(100) | YES  |     | NULL    |       |
+| ExperienceYears | int          | YES  |     | NULL    |       |
+| Address         | varchar(255) | YES  |     | NULL    |       |
+| JoiningDate     | date         | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> desc table doctors;
++----+-------------+---------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table   | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+---------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | doctors | NULL       | ALL  | NULL          | NULL | NULL    | NULL |   22 |   100.00 | NULL  |
++----+-------------+---------+------------+------+---------------+------+---------+------+------+----------+-------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> table doctors;
++----------+-------------------------+--------+------------------------+---------------+---------------+----------------------------------+-----------------+------------------------+-------------+
+| DoctorID | DoctorName              | Gender | Specialization         | Qualification | ContactNumber | Email                            | ExperienceYears | Address                | JoiningDate |
++----------+-------------------------+--------+------------------------+---------------+---------------+----------------------------------+-----------------+------------------------+-------------+
+|        1 | Dr. Arvind Bhattacharya | Male   | Cardiologist           | MBBS, MD      | 9876012345    | arvind.bhattacharya@hospital.com |              14 | Kolkata, West Bengal   | 2011-05-14  |
+|        2 | Dr. Seema Raghavan      | Female | Dermatologist          | MBBS, MD      | 9765123489    | seema.raghavan@hospital.com      |              11 | Chennai, Tamil Nadu    | 2013-07-20  |
+|        3 | Dr. Prakash Naidu       | Male   | Orthopedic Surgeon     | MBBS, MS      | 9945236789    | prakash.naidu@hospital.com       |              15 | Bengaluru, Karnataka   | 2010-11-03  |
+|        4 | Dr. Lata Venkatesh      | Female | Gynecologist           | MBBS, MD      | 9823415670    | lata.venkatesh@hospital.com      |               9 | Hyderabad, Telangana   | 2016-02-10  |
+|        5 | Dr. Naveen Chopra       | Male   | Neurologist            | MBBS, DM      | 9012378956    | naveen.chopra@hospital.com       |              12 | Delhi                  | 2012-10-25  |
+|        6 | Dr. Shalini Suresh      | Female | Pediatrician           | MBBS, MD      | 9456217890    | shalini.suresh@hospital.com      |              10 | Kochi, Kerala          | 2015-08-15  |
+|        7 | Dr. Anil Dey            | Male   | Urologist              | MBBS, MS      | 9345689012    | anil.dey@hospital.com            |              13 | Guwahati, Assam        | 2011-03-07  |
+|        8 | Dr. Neeta Gaur          | Female | Endocrinologist        | MBBS, DM      | 9435612789    | neeta.gaur@hospital.com          |               8 | Jaipur, Rajasthan      | 2018-06-11  |
+|        9 | Dr. Vinod Malhotra      | Male   | Radiologist            | MBBS, MD      | 9356127890    | vinod.malhotra@hospital.com      |              16 | Lucknow, Uttar Pradesh | 2009-09-19  |
+|       10 | Dr. Harini Raj          | Female | ENT Specialist         | MBBS, MS      | 9123456798    | harini.raj@hospital.com          |               6 | Coimbatore, Tamil Nadu | 2019-12-01  |
+|       11 | Dr. Arpit Bajaj         | Male   | Pulmonologist          | MBBS, MD      | 9890054321    | arpit.bajaj@hospital.com         |              11 | Bhopal, Madhya Pradesh | 2014-04-09  |
+|       12 | Dr. Rachita Ghosh       | Female | Oncologist             | MBBS, DM      | 9978654321    | rachita.ghosh@hospital.com       |               9 | Kolkata, West Bengal   | 2016-07-20  |
+|       13 | Dr. Rajeev Pillai       | Male   | Gastroenterologist     | MBBS, DM      | 9786541230    | rajeev.pillai@hospital.com       |              10 | Trivandrum, Kerala     | 2015-03-03  |
+|       14 | Dr. Bhavna Agarwal      | Female | Ophthalmologist        | MBBS, MS      | 9567890345    | bhavna.agarwal@hospital.com      |               7 | Indore, Madhya Pradesh | 2019-01-27  |
+|       15 | Dr. Kunal Shetty        | Male   | Dentist                | BDS, MDS      | 9123409876    | kunal.shetty@hospital.com        |               5 | Mangalore, Karnataka   | 2020-09-15  |
+|       16 | Dr. Ramesh Yadav        | Male   | Psychiatrist           | MBBS, MD      | 9223344112    | ramesh.yadav@hospital.com        |              12 | Patna, Bihar           | 2012-06-19  |
+|       17 | Dr. Aditi Bhandari      | Female | General Surgeon        | MBBS, MS      | 9321789054    | aditi.bhandari@hospital.com      |              10 | Delhi                  | 2015-08-10  |
+|       18 | Dr. Suresh Nambiar      | Male   | Nephrologist           | MBBS, DM      | 9456789012    | suresh.nambiar@hospital.com      |              14 | Chennai, Tamil Nadu    | 2011-04-02  |
+|       19 | Dr. Karishma Patel      | Female | Anesthesiologist       | MBBS, MD      | 9334678901    | karishma.patel@hospital.com      |               9 | Ahmedabad, Gujarat     | 2016-12-14  |
+|       20 | Dr. Pankaj Sinha        | Male   | Pathologist            | MBBS, MD      | 9556723489    | pankaj.sinha@hospital.com        |              13 | Ranchi, Jharkhand      | 2012-09-09  |
+|       21 | Dr. Shruti Deshmukh     | Female | Dermatologist          | MBBS, MD      | 9765123490    | shruti.deshmukh@hospital.com     |               6 | Nagpur, Maharashtra    | 2019-05-23  |
+|       22 | Dr. Amarjeet Gill       | Male   | Cardiothoracic Surgeon | MBBS, MS, MCh | 9876123409    | amarjeet.gill@hospital.com       |              17 | Amritsar, Punjab       | 2008-02-14  |
++----------+-------------------------+--------+------------------------+---------------+---------------+----------------------------------+-----------------+------------------------+-------------+
+22 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Doctors_Schedule (
+    ->   schedule_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->   doctor_id INT NOT NULL,
+    ->   day_of_week VARCHAR(15) NOT NULL,
+    ->   start_time TIME NOT NULL,
+    ->   end_time TIME NOT NULL,
+    ->   room_number VARCHAR(20),
+    ->   status VARCHAR(20) DEFAULT 'Available',
+    ->   CONSTRAINT fk_ds_doctor FOREIGN KEY (doctor_id) REFERENCES doctors(DoctorID)
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> CREATE TABLE DoctorSchedule (
+    ->     ScheduleID INT PRIMARY KEY,
+    ->     DoctorID INT,
+    ->     DoctorName VARCHAR(50),
+    ->     Specialization VARCHAR(50),
+    ->     DayOfWeek VARCHAR(20),
+    ->     StartTime TIME,
+    ->     EndTime TIME,
+    ->     RoomNo VARCHAR(10)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO DoctorSchedule VALUES
+    -> -- 1. Dr. Arvind Bhattacharya – Cardiologist
+    -> (1, 1, 'Dr. Arvind Bhattacharya', 'Cardiologist', 'Monday', '09:00', '13:00', 'C101'),
+    -> (2, 1, 'Dr. Arvind Bhattacharya', 'Cardiologist', 'Thursday', '14:00', '18:00', 'C101'),
+    ->
+    -> -- 2. Dr. Seema Raghavan – Dermatologist
+    -> (3, 2, 'Dr. Seema Raghavan', 'Dermatologist', 'Tuesday', '10:00', '14:00', 'D202'),
+    -> (4, 2, 'Dr. Seema Raghavan', 'Dermatologist', 'Friday',  '09:00', '12:00', 'D202'),
+    ->
+    -> -- 3. Dr. Prakash Naidu – Orthopedic Surgeon
+    -> (5, 3, 'Dr. Prakash Naidu', 'Orthopedic Surgeon', 'Wednesday', '11:00', '15:00', 'O303'),
+    -> (6, 3, 'Dr. Prakash Naidu', 'Orthopedic Surgeon', 'Saturday',  '09:00', '12:00', 'O303'),
+    ->
+    -> -- 4. Dr. Lata Venkatesh – Gynecologist
+    -> (7, 4, 'Dr. Lata Venkatesh', 'Gynecologist', 'Monday', '14:00', '18:00', 'G404'),
+    -> (8, 4, 'Dr. Lata Venkatesh', 'Gynecologist', 'Thursday','10:00', '14:00', 'G404'),
+    ->
+    -> -- 5. Dr. Naveen Chopra – Neurologist
+    -> (9, 5, 'Dr. Naveen Chopra', 'Neurologist', 'Tuesday', '09:00', '13:00', 'N505'),
+    -> (10, 5, 'Dr. Naveen Chopra', 'Neurologist','Friday', '11:00', '15:00', 'N505'),
+    ->
+    -> -- 6. Dr. Shalini Suresh – Pediatrician
+    -> (11, 6, 'Dr. Shalini Suresh', 'Pediatrician', 'Wednesday','10:00', '14:00', 'P606'),
+    -> (12, 6, 'Dr. Shalini Suresh', 'Pediatrician', 'Saturday','09:00', '12:00', 'P606'),
+    ->
+    -> -- 7. Dr. Anil Dey – Urologist
+    -> (13, 7, 'Dr. Anil Dey', 'Urologist', 'Thursday','09:00', '13:00', 'U707'),
+    -> (14, 7, 'Dr. Anil Dey', 'Urologist', 'Monday','12:00', '16:00', 'U707'),
+    ->
+    -> -- 8. Dr. Neeta Gaur – Endocrinologist
+    -> (15, 8, 'Dr. Neeta Gaur', 'Endocrinologist', 'Tuesday','14:00', '18:00', 'E808'),
+    -> (16, 8, 'Dr. Neeta Gaur', 'Endocrinologist','Friday','10:00', '14:00', 'E808'),
+    ->
+    -> -- 9. Dr. Vinod Malhotra – Radiologist
+    -> (17, 9, 'Dr. Vinod Malhotra', 'Radiologist','Wednesday','09:00', '13:00', 'R909'),
+    -> (18, 9, 'Dr. Vinod Malhotra', 'Radiologist','Saturday','12:00', '16:00', 'R909'),
+    ->
+    -> -- 10. Dr. Harini Raj – ENT Specialist
+    -> (19, 10, 'Dr. Harini Raj', 'ENT Specialist','Monday','10:00', '14:00', 'E010'),
+    -> (20, 10, 'Dr. Harini Raj', 'ENT Specialist','Thursday','14:00', '18:00', 'E010'),
+    ->
+    -> -- 11. Dr. Arpit Bajaj – Pulmonologist
+    -> (21, 11, 'Dr. Arpit Bajaj', 'Pulmonologist','Tuesday','11:00', '15:00', 'P111'),
+    -> (22, 11, 'Dr. Arpit Bajaj', 'Pulmonologist','Friday','09:00', '13:00', 'P111'),
+    ->
+    -> -- 12. Dr. Rachita Ghosh – Oncologist
+    -> (23, 12, 'Dr. Rachita Ghosh', 'Oncologist','Wednesday','10:00', '14:00', 'O212'),
+    -> (24, 12, 'Dr. Rachita Ghosh', 'Oncologist','Saturday','09:00', '12:00', 'O212');
+Query OK, 24 rows affected (0.02 sec)
+Records: 24  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Appointments (
+    ->     AppointmentID INT PRIMARY KEY,
+    ->     PatientName VARCHAR(50),
+    ->     PatientGender VARCHAR(10),
+    ->     PatientAge INT,
+    ->     ContactNumber VARCHAR(15),
+    ->     DoctorID INT,
+    ->     DoctorName VARCHAR(50),
+    ->     Specialization VARCHAR(50),
+    ->     AppointmentDate DATE,
+    ->     AppointmentTime TIME,
+    ->     Status VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Appointments VALUES
+    -> (1, 'Rohan Mehta', 'Male', 32, '9876543210', 1, 'Dr. Arvind Bhattacharya', 'Cardiologist', '2025-01-10', '10:00', 'Confirmed'),
+    -> (2, 'Sneha Patil', 'Female', 27, '9876501234', 2, 'Dr. Seema Raghavan', 'Dermatologist', '2025-01-11', '11:30', 'Confirmed'),
+    -> (3, 'Arjun Desai', 'Male', 45, '9988776655', 3, 'Dr. Prakash Naidu', 'Orthopedic Surgeon', '2025-01-12', '09:45', 'Pending'),
+    -> (4, 'Nikita Sharma', 'Female', 38, '9123456701', 4, 'Dr. Lata Venkatesh', 'Gynecologist', '2025-01-13', '14:00', 'Confirmed'),
+    -> (5, 'Vivek Rao', 'Male', 29, '9988012345', 5, 'Dr. Naveen Chopra', 'Neurologist', '2025-01-13', '15:30', 'Cancelled'),
+    -> (6, 'Divya Kamat', 'Female', 22, '9012345678', 6, 'Dr. Shalini Suresh', 'Pediatrician', '2025-01-14', '10:15', 'Confirmed'),
+    -> (7, 'Kabir Singh', 'Male', 50, '9753102468', 7, 'Dr. Anil Dey', 'Urologist', '2025-01-14', '12:00', 'Pending'),
+    -> (8, 'Tanisha Gupta', 'Female', 31, '9871234560', 8, 'Dr. Neeta Gaur', 'Endocrinologist', '2025-01-15', '13:45', 'Confirmed'),
+    -> (9, 'Rahul Verma', 'Male', 42, '9765432180', 9, 'Dr. Vinod Malhotra', 'Radiologist', '2025-01-15', '09:00', 'Confirmed'),
+    -> (10, 'Pooja Nair', 'Female', 35, '9345678123', 10, 'Dr. Harini Raj', 'ENT Specialist', '2025-01-16', '16:00', 'Pending'),
+    ->
+    -> (11, 'Suresh Kumar', 'Male', 48, '9456789034', 11, 'Dr. Arpit Bajaj', 'Pulmonologist', '2025-01-17', '10:30', 'Confirmed'),
+    -> (12, 'Meena Jha', 'Female', 54, '9987654320', 12, 'Dr. Rachita Ghosh', 'Oncologist', '2025-01-17', '13:00', 'Confirmed'),
+    -> (13, 'Ritesh Bansal', 'Male', 36, '9867543201', 13, 'Dr. Rajeev Pillai', 'Gastroenterologist', '2025-01-18', '11:15', 'Pending'),
+    -> (14, 'Asha Pillai', 'Female', 29, '9756423109', 14, 'Dr. Bhavna Agarwal', 'Ophthalmologist', '2025-01-18', '12:45', 'Confirmed'),
+    -> (15, 'Pradeep Singh', 'Male', 40, '9567342190', 15, 'Dr. Kunal Shetty', 'Dentist', '2025-01-19', '10:00', 'Confirmed'),
+    ->
+    -> (16, 'Shraddha Jain', 'Female', 30, '9098765432', 16, 'Dr. Ramesh Yadav', 'Psychiatrist', '2025-01-20', '15:00', 'Pending'),
+    -> (17, 'Gaurav Malhotra', 'Male', 33, '9345678901', 17, 'Dr. Aditi Bhandari', 'General Surgeon', '2025-01-20', '11:00', 'Confirmed'),
+    -> (18, 'Neha Shukla', 'Female', 28, '9678901234', 18, 'Dr. Suresh Nambiar', 'Nephrologist', '2025-01-21', '12:30', 'Confirmed'),
+    -> (19, 'Aman Kapoor', 'Male', 51, '9870987654', 19, 'Dr. Karishma Patel', 'Anesthesiologist', '2025-01-21', '14:15', 'Confirmed'),
+    -> (20, 'Jyoti Rawat', 'Female', 26, '9245687130', 20, 'Dr. Pankaj Sinha', 'Pathologist', '2025-01-22', '09:30', 'Cancelled'),
+    ->
+    -> (21, 'Karthik Reddy', 'Male', 39, '9332456712', 21, 'Dr. Shruti Deshmukh', 'Dermatologist', '2025-01-22', '11:45', 'Confirmed'),
+    -> (22, 'Sanjana Basu', 'Female', 34, '9654781320', 22, 'Dr. Amarjeet Gill', 'Cardiothoracic Surgeon', '2025-01-23', '16:30', 'Pending');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Encounters (
+    ->     EncounterID INT PRIMARY KEY,
+    ->     PatientName VARCHAR(50),
+    ->     PatientAge INT,
+    ->     PatientGender VARCHAR(10),
+    ->     DoctorID INT,
+    ->     DoctorName VARCHAR(50),
+    ->     Specialization VARCHAR(50),
+    ->     EncounterDate DATE,
+    ->     EncounterTime TIME,
+    ->     VisitType VARCHAR(20),
+    ->     Diagnosis VARCHAR(100),
+    ->     TreatmentNotes VARCHAR(150),
+    ->     Status VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Encounters VALUES
+    -> (1, 'Rohan Mehta', 32, 'Male', 1, 'Dr. Arvind Bhattacharya', 'Cardiologist',
+    ->  '2025-01-10', '10:30', 'OPD', 'High BP', 'Prescribed BP medication', 'Completed'),
+    ->
+    -> (2, 'Sneha Patil', 27, 'Female', 2, 'Dr. Seema Raghavan', 'Dermatologist',
+    ->  '2025-01-11', '11:45', 'OPD', 'Skin Rash', 'Advised ointment', 'Completed'),
+    ->
+    -> (3, 'Arjun Desai', 45, 'Male', 3, 'Dr. Prakash Naidu', 'Orthopedic Surgeon',
+    ->  '2025-01-12', '10:15', 'OPD', 'Knee Pain', 'Recommended X-ray', 'Ongoing'),
+    ->
+    -> (4, 'Nikita Sharma', 38, 'Female', 4, 'Dr. Lata Venkatesh', 'Gynecologist',
+    ->  '2025-01-13', '14:20', 'OPD', 'Irregular Periods', 'Scheduled ultrasound', 'Ongoing'),
+    ->
+    -> (5, 'Vivek Rao', 29, 'Male', 5, 'Dr. Naveen Chopra', 'Neurologist',
+    ->  '2025-01-13', '15:45', 'OPD', 'Migraines', 'Prescribed migraine tablets', 'Completed'),
+    ->
+    -> (6, 'Divya Kamat', 22, 'Female', 6, 'Dr. Shalini Suresh', 'Pediatrician',
+    ->  '2025-01-14', '10:30', 'Follow-up', 'Fever Recovery', 'Monitoring progress', 'Ongoing'),
+    ->
+    -> (7, 'Kabir Singh', 50, 'Male', 7, 'Dr. Anil Dey', 'Urologist',
+    ->  '2025-01-14', '12:10', 'OPD', 'Kidney Stone Pain', 'Advised scan', 'Ongoing'),
+    ->
+    -> (8, 'Tanisha Gupta', 31, 'Female', 8, 'Dr. Neeta Gaur', 'Endocrinologist',
+    ->  '2025-01-15', '14:00', 'OPD', 'Thyroid Issues', 'Thyroid test prescribed', 'Completed'),
+    ->
+    -> (9, 'Rahul Verma', 42, 'Male', 9, 'Dr. Vinod Malhotra', 'Radiologist',
+    ->  '2025-01-15', '09:15', 'OPD', 'Chest Scan', 'Scan performed', 'Completed'),
+    ->
+    -> (10, 'Pooja Nair', 35, 'Female', 10, 'Dr. Harini Raj', 'ENT Specialist',
+    ->  '2025-01-16', '16:20', 'OPD', 'Ear Infection', 'Prescribed antibiotics', 'Completed'),
+    ->
+    -> (11, 'Suresh Kumar', 48, 'Male', 11, 'Dr. Arpit Bajaj', 'Pulmonologist',
+    ->  '2025-01-17', '10:45', 'OPD', 'Breathing Issues', 'Ordered lung function test', 'Ongoing'),
+    ->
+    -> (12, 'Meena Jha', 54, 'Female', 12, 'Dr. Rachita Ghosh', 'Oncologist',
+    ->  '2025-01-17', '13:30', 'Follow-up', 'Chemotherapy Follow-up', 'Stable condition', 'Completed'),
+    ->
+    -> (13, 'Ritesh Bansal', 36, 'Male', 13, 'Dr. Rajeev Pillai', 'Gastroenterologist',
+    ->  '2025-01-18', '11:30', 'OPD', 'Acid Reflux', 'Diet changes suggested', 'Completed'),
+    ->
+    -> (14, 'Asha Pillai', 29, 'Female', 14, 'Dr. Bhavna Agarwal', 'Ophthalmologist',
+    ->  '2025-01-18', '13:00', 'OPD', 'Vision Blurry', 'Eye test recommended', 'Ongoing'),
+    ->
+    -> (15, 'Pradeep Singh', 40, 'Male', 15, 'Dr. Kunal Shetty', 'Dentist',
+    ->  '2025-01-19', '10:15', 'OPD', 'Tooth Pain', 'Cavity detected, filling advised', 'Completed'),
+    ->
+    -> (16, 'Shraddha Jain', 30, 'Female', 16, 'Dr. Ramesh Yadav', 'Psychiatrist',
+    ->  '2025-01-20', '15:20', 'Follow-up', 'Anxiety Issues', 'Counseling continued', 'Ongoing'),
+    ->
+    -> (17, 'Gaurav Malhotra', 33, 'Male', 17, 'Dr. Aditi Bhandari', 'General Surgeon',
+    ->  '2025-01-20', '11:15', 'OPD', 'Abdominal Pain', 'Ultrasound advised', 'Ongoing'),
+    ->
+    -> (18, 'Neha Shukla', 28, 'Female', 18, 'Dr. Suresh Nambiar', 'Nephrologist',
+    ->  '2025-01-21', '12:40', 'OPD', 'Kidney Function Check', 'Reports normal', 'Completed'),
+    ->
+    -> (19, 'Aman Kapoor', 51, 'Male', 19, 'Dr. Karishma Patel', 'Anesthesiologist',
+    ->  '2025-01-21', '14:30', 'Emergency', 'Severe Pain', 'Given pain relief', 'Completed'),
+    ->
+    -> (20, 'Jyoti Rawat', 26, 'Female', 20, 'Dr. Pankaj Sinha', 'Pathologist',
+    ->  '2025-01-22', '09:45', 'OPD', 'Blood Test Review', 'Results explained', 'Completed'),
+    ->
+    -> (21, 'Karthik Reddy', 39, 'Male', 21, 'Dr. Shruti Deshmukh', 'Dermatologist',
+    ->  '2025-01-22', '12:00', 'Follow-up', 'Acne Treatment', 'Improvement seen', 'Completed'),
+    ->
+    -> (22, 'Sanjana Basu', 34, 'Female', 22, 'Dr. Amarjeet Gill', 'Cardiothoracic Surgeon',
+    ->  '2025-01-23', '16:45', 'OPD', 'Post Surgery Review', 'Stable recovery', 'Completed');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Medication (
+    ->     MedicationID INT PRIMARY KEY,
+    ->     PatientID INT,
+    ->     DoctorID INT,
+    ->     MedicationName VARCHAR(100),
+    ->     Dosage VARCHAR(50),
+    ->     Frequency VARCHAR(50),
+    ->     StartDate DATE,
+    ->     EndDate DATE,
+    ->     Notes VARCHAR(200)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO Medication VALUES
+    -> (1, 101, 1, 'Atorvastatin', '10 mg', 'Once daily', '2025-01-02', '2025-03-02', 'Cholesterol control'),
+    -> (2, 102, 2, 'Clobetasol Cream', 'Apply thin layer', 'Twice daily', '2025-01-05', '2025-01-20', 'Skin inflammation'),
+    -> (3, 103, 3, 'Ibuprofen', '400 mg', 'Thrice daily', '2025-02-10', '2025-02-20', 'Joint pain relief'),
+    -> (4, 104, 4, 'Folic Acid', '5 mg', 'Once daily', '2025-01-12', '2025-02-12', 'Pregnancy supplement'),
+    -> (5, 105, 5, 'Levetiracetam', '500 mg', 'Twice daily', '2025-03-01', '2025-06-01', 'Neurological seizures'),
+    -> (6, 106, 6, 'Amoxicillin', '500 mg', 'Thrice daily', '2025-01-20', '2025-01-30', 'Throat infection'),
+    -> (7, 107, 7, 'Tamsulosin', '0.4 mg', 'Once daily', '2025-02-01', '2025-04-01', 'Urinary issues'),
+    -> (8, 108, 8, 'Metformin', '500 mg', 'Twice daily', '2025-02-10', '2025-05-10', 'Diabetes management'),
+    -> (9, 109, 9, 'Omeprazole', '20 mg', 'Once daily', '2025-03-05', '2025-04-05', 'Acid reflux'),
+    -> (10, 110, 10, 'Cetirizine', '10 mg', 'Once daily', '2025-01-15', '2025-02-15', 'Allergy relief'),
+    -> (11, 111, 11, 'Budesonide Inhaler', '1 puff', 'Twice daily', '2025-01-07', '2025-04-07', 'Asthma control'),
+    -> (12, 112, 12, 'Paclitaxel', '150 mg', 'Weekly', '2025-02-01', '2025-05-01', 'Cancer treatment'),
+    -> (13, 113, 13, 'Pantoprazole', '40 mg', 'Once daily', '2025-01-09', '2025-02-09', 'Digestive issues'),
+    -> (14, 114, 14, 'Timolol Drops', '1 drop', 'Twice daily', '2025-03-01', '2025-04-01', 'Eye pressure control'),
+    -> (15, 115, 15, 'Calcium Carbonate', '500 mg', 'Once daily', '2025-01-25', '2025-03-25', 'Dental bone strength'),
+    -> (16, 116, 16, 'Sertraline', '25 mg', 'Once daily', '2025-03-10', '2025-06-10', 'Anxiety control'),
+    -> (17, 117, 17, 'Diclofenac', '50 mg', 'Twice daily', '2025-02-14', '2025-03-14', 'Surgery pain management'),
+    -> (18, 118, 18, 'Losartan', '50 mg', 'Once daily', '2025-02-20', '2025-05-20', 'Kidney blood pressure'),
+    -> (19, 119, 19, 'Propofol', '100 mg', 'As required', '2025-01-20', '2025-01-20', 'General anesthesia'),
+    -> (20, 120, 20, 'Azithromycin', '250 mg', 'Once daily', '2025-03-11', '2025-03-15', 'Bacterial infection'),
+    -> (21, 121, 21, 'Hydrocortisone Cream', 'Apply thin layer', 'Twice daily', '2025-02-18', '2025-03-01', 'Skin allergy'),
+    -> (22, 122, 22, 'Warfarin', '5 mg', 'Once daily', '2025-01-01', '2025-04-01', 'Blood thinning'),
+    -> (23, 123, 5, 'Gabapentin', '300 mg', 'Twice daily', '2025-03-05', '2025-06-05', 'Nerve pain'),
+    -> (24, 124, 8, 'Insulin Glargine', '10 units', 'Once daily', '2025-01-30', '2025-04-30', 'Diabetes control');
+Query OK, 24 rows affected (0.01 sec)
+Records: 24  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Prescriptions (
+    ->     PrescriptionID INT PRIMARY KEY,
+    ->     PatientID INT,
+    ->     DoctorID INT,
+    ->     MedicationName VARCHAR(100),
+    ->     Dosage VARCHAR(50),
+    ->     Frequency VARCHAR(50),
+    ->     Duration VARCHAR(50),
+    ->     PrescriptionDate DATE,
+    ->     Notes VARCHAR(200)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Prescriptions VALUES
+    -> (1, 101, 1, 'Aspirin', '75 mg', 'Once daily', '30 days', '2025-01-02', 'For heart health'),
+    -> (2, 102, 2, 'Azelic Acid Cream', 'Apply thin layer', 'Twice daily', '15 days', '2025-01-05', 'Acne treatment'),
+    -> (3, 103, 3, 'Naproxen', '250 mg', 'Thrice daily', '10 days', '2025-02-10', 'Pain and swelling'),
+    -> (4, 104, 4, 'Iron Supplement', '50 mg', 'Once daily', '45 days', '2025-01-12', 'Pregnancy support'),
+    -> (5, 105, 5, 'Lamotrigine', '100 mg', 'Twice daily', '60 days', '2025-03-01', 'Neurological stability'),
+    -> (6, 106, 6, 'Cefixime', '200 mg', 'Twice daily', '7 days', '2025-01-20', 'Respiratory infection'),
+    -> (7, 107, 7, 'Finasteride', '5 mg', 'Once daily', '90 days', '2025-02-01', 'Prostate support'),
+    -> (8, 108, 8, 'Gliclazide', '40 mg', 'Once daily', '60 days', '2025-02-10', 'Blood sugar control'),
+    -> (9, 109, 9, 'Ranitidine', '150 mg', 'Twice daily', '14 days', '2025-03-05', 'Acid control'),
+    -> (10, 110, 10, 'Montelukast', '10 mg', 'Once nightly', '30 days', '2025-01-15', 'Allergy prevention'),
+    -> (11, 111, 11, 'Salbutamol Inhaler', '2 puffs', 'As needed', '30 days', '2025-01-07', 'Breathing support'),
+    -> (12, 112, 12, 'Cyclophosphamide', '50 mg', 'Daily', '90 days', '2025-02-01', 'Cancer therapy'),
+    -> (13, 113, 13, 'Esomeprazole', '40 mg', 'Once daily', '30 days', '2025-01-09', 'Gastric relief'),
+    -> (14, 114, 14, 'Carboxymethylcellulose Eye Drops', '1 drop', 'Thrice daily', '21 days', '2025-03-01', 'Dry eyes'),
+    -> (15, 115, 15, 'Vitamin D3', '60,000 IU', 'Weekly', '8 weeks', '2025-01-25', 'Bone strengthening'),
+    -> (16, 116, 16, 'Diazepam', '5 mg', 'Once daily', '30 days', '2025-03-10', 'Anxiety control'),
+    -> (17, 117, 17, 'Paracetamol', '500 mg', 'Thrice daily', '5 days', '2025-02-14', 'Post-surgery fever'),
+    -> (18, 118, 18, 'Amlodipine', '5 mg', 'Once daily', '60 days', '2025-02-20', 'Blood pressure control'),
+    -> (19, 119, 19, 'Midazolam', '5 mg', 'One time dose', '1 day', '2025-01-20', 'Sedation'),
+    -> (20, 120, 20, 'Vitamin B12', '500 mcg', 'Once daily', '30 days', '2025-03-11', 'Deficiency correction'),
+    -> (21, 121, 21, 'Ketoconazole Cream', 'Apply thin layer', 'Twice daily', '14 days', '2025-02-18', 'Skin fungal infection'),
+    -> (22, 122, 22, 'Clopidogrel', '75 mg', 'Once daily', '90 days', '2025-01-01', 'Prevent blood clots'),
+    -> (23, 123, 8, 'Insulin Lispro', '5 units', 'Thrice daily', '60 days', '2025-01-30', 'Sugar spikes'),
+    -> (24, 124, 5, 'Topiramate', '50 mg', 'Once daily', '45 days', '2025-03-05', 'Migraine control');
+Query OK, 24 rows affected (0.01 sec)
+Records: 24  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE PrescriptionItems (
+    ->     ItemID INT PRIMARY KEY,
+    ->     PrescriptionID INT,
+    ->     MedicationName VARCHAR(100),
+    ->     Dosage VARCHAR(50),
+    ->     Frequency VARCHAR(50),
+    ->     Duration VARCHAR(50),
+    ->     Notes VARCHAR(200)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO PrescriptionItems VALUES
+    -> (1, 1, 'Aspirin', '75 mg', 'Once daily', '30 days', 'Heart health'),
+    -> (2, 1, 'Atorvastatin', '10 mg', 'Once daily', '30 days', 'Cholesterol control'),
+    ->
+    -> (3, 2, 'Azelic Acid Cream', 'Apply thin layer', 'Twice daily', '15 days', 'Acne treatment'),
+    ->
+    -> (4, 3, 'Naproxen', '250 mg', 'Thrice daily', '10 days', 'Pain relief'),
+    -> (5, 3, 'Pantoprazole', '40 mg', 'Once daily', '10 days', 'Protect stomach'),
+    ->
+    -> (6, 4, 'Iron Supplement', '50 mg', 'Once daily', '45 days', 'Pregnancy support'),
+    -> (7, 4, 'Folic Acid', '5 mg', 'Once daily', '45 days', 'Hemoglobin boost'),
+    ->
+    -> (8, 5, 'Lamotrigine', '100 mg', 'Twice daily', '60 days', 'Seizure control'),
+    ->
+    -> (9, 6, 'Cefixime', '200 mg', 'Twice daily', '7 days', 'Bacterial infection'),
+    ->
+    -> (10, 7, 'Finasteride', '5 mg', 'Once daily', '90 days', 'Prostate health'),
+    ->
+    -> (11, 8, 'Gliclazide', '40 mg', 'Once daily', '60 days', 'Sugar control'),
+    -> (12, 8, 'Metformin', '500 mg', 'Twice daily', '60 days', 'Diabetes'),
+    ->
+    -> (13, 9, 'Ranitidine', '150 mg', 'Twice daily', '14 days', 'Acidity control'),
+    ->
+    -> (14, 10, 'Montelukast', '10 mg', 'Once nightly', '30 days', 'Allergy prevention'),
+    -> (15, 10, 'Cetirizine', '10 mg', 'Once daily', '10 days', 'Symptom relief'),
+    ->
+    -> (16, 11, 'Salbutamol Inhaler', '2 puffs', 'As needed', '30 days', 'Asthma relief'),
+    ->
+    -> (17, 12, 'Cyclophosphamide', '50 mg', 'Daily', '90 days', 'Cancer therapy'),
+    ->
+    -> (18, 13, 'Esomeprazole', '40 mg', 'Once daily', '30 days', 'Gastric protection'),
+    ->
+    -> (19, 14, 'Eye Lubricant Drops', '1 drop', 'Thrice daily', '21 days', 'Dry eye relief'),
+    ->
+    -> (20, 15, 'Vitamin D3', '60,000 IU', 'Weekly', '8 weeks', 'Bone strengthening'),
+    -> (21, 15, 'Calcium Carbonate', '500 mg', 'Once daily', '60 days', 'Improves calcium levels'),
+    ->
+    -> (22, 16, 'Diazepam', '5 mg', 'Once daily', '30 days', 'Anxiety control');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Billing (
+    ->     BillID INT PRIMARY KEY,
+    ->     PatientID INT,
+    ->     DoctorID INT,
+    ->     BillDate DATE,
+    ->     ConsultationFee DECIMAL(10,2),
+    ->     MedicineCharges DECIMAL(10,2),
+    ->     LabCharges DECIMAL(10,2),
+    ->     RoomCharges DECIMAL(10,2),
+    ->     Discount DECIMAL(10,2),
+    ->     Tax DECIMAL(10,2),
+    ->     TotalAmount DECIMAL(10,2),
+    ->     PaymentStatus VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Billing VALUES
+    -> (1, 101, 1, '2025-01-05', 500, 300, 0, 0, 50, 90, 840, 'Paid'),
+    -> (2, 102, 2, '2025-01-08', 600, 150, 200, 0, 0, 95, 1045, 'Paid'),
+    -> (3, 103, 3, '2025-02-12', 700, 0, 300, 0, 20, 98, 1078, 'Pending'),
+    -> (4, 104, 4, '2025-01-14', 550, 200, 150, 0, 0, 90, 990, 'Paid'),
+    -> (5, 105, 5, '2025-03-02', 800, 500, 300, 0, 50, 155, 1705, 'Paid'),
+    -> (6, 106, 6, '2025-01-21', 400, 250, 0, 0, 0, 66, 716, 'Paid'),
+    -> (7, 107, 7, '2025-02-04', 650, 0, 0, 0, 10, 64, 704, 'Pending'),
+    -> (8, 108, 8, '2025-02-12', 500, 300, 250, 0, 0, 105, 1155, 'Paid'),
+    -> (9, 109, 9, '2025-03-06', 700, 100, 600, 0, 0, 140, 1540, 'Paid'),
+    -> (10, 110, 10, '2025-01-17', 450, 150, 0, 0, 0, 54, 654, 'Paid'),
+    ->
+    -> (11, 111, 11, '2025-01-09', 600, 150, 200, 0, 20, 93, 1023, 'Paid'),
+    -> (12, 112, 12, '2025-02-03', 900, 600, 1500, 0, 100, 300, 3200, 'Paid'),
+    -> (13, 113, 13, '2025-01-11', 550, 200, 300, 0, 0, 105, 1155, 'Pending'),
+    -> (14, 114, 14, '2025-03-02', 700, 0, 0, 0, 0, 63, 763, 'Paid'),
+    -> (15, 115, 15, '2025-01-26', 300, 150, 0, 0, 0, 27, 477, 'Paid'),
+    ->
+    -> (16, 116, 16, '2025-03-12', 650, 200, 0, 0, 10, 76, 916, 'Pending'),
+    -> (17, 117, 17, '2025-02-15', 800, 100, 0, 1000, 0, 180, 2080, 'Paid'),
+    -> (18, 118, 18, '2025-02-23', 900, 300, 400, 0, 50, 165, 1815, 'Paid'),
+    -> (19, 119, 19, '2025-01-21', 500, 0, 600, 0, 0, 110, 1210, 'Paid'),
+    -> (20, 120, 20, '2025-03-12', 400, 250, 0, 0, 0, 65, 715, 'Paid'),
+    ->
+    -> (21, 121, 21, '2025-02-20', 600, 200, 150, 0, 30, 107, 1027, 'Pending'),
+    -> (22, 122, 22, '2025-01-03', 1100, 0, 0, 0, 0, 99, 1199, 'Paid');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE DiagnosticTests (
+    ->     TestID INT PRIMARY KEY,
+    ->     PatientID INT,
+    ->     DoctorID INT,
+    ->     TestName VARCHAR(100),
+    ->     TestDate DATE,
+    ->     Result VARCHAR(200),
+    ->     Cost DECIMAL(10,2),
+    ->     Status VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO DiagnosticTests VALUES
+    -> (1, 101, 1, 'ECG', '2025-01-05', 'Normal rhythm', 800, 'Completed'),
+    -> (2, 102, 2, 'Skin Allergy Test', '2025-01-09', 'Mild positive reaction', 500, 'Completed'),
+    -> (3, 103, 3, 'X-Ray (Knee)', '2025-02-11', 'Minor inflammation', 1200, 'Completed'),
+    -> (4, 104, 4, 'Ultrasound (Pelvis)', '2025-01-13', 'Normal', 1500, 'Completed'),
+    -> (5, 105, 5, 'MRI Brain', '2025-03-02', 'No major abnormalities', 4500, 'Completed'),
+    ->
+    -> (6, 106, 6, 'CBC', '2025-01-21', 'Slight anemia', 400, 'Completed'),
+    -> (7, 107, 7, 'Urine Culture', '2025-02-03', 'No infection', 600, 'Completed'),
+    -> (8, 108, 8, 'Thyroid Profile', '2025-02-12', 'TSH slightly high', 800, 'Completed'),
+    -> (9, 109, 9, 'CT Scan Chest', '2025-03-06', 'Normal', 3500, 'Completed'),
+    -> (10, 110, 10, 'Hearing Test', '2025-01-17', 'Mild sensitivity loss', 900, 'Completed'),
+    ->
+    -> (11, 111, 11, 'Pulmonary Function Test', '2025-01-10', 'Moderate obstruction', 1200, 'Completed'),
+    -> (12, 112, 12, 'Biopsy', '2025-02-03', 'Benign tissue', 5000, 'Completed'),
+    -> (13, 113, 13, 'Endoscopy', '2025-01-11', 'Mild gastritis', 2500, 'Completed'),
+    -> (14, 114, 14, 'Eye Pressure Test', '2025-03-02', 'Normal', 700, 'Completed'),
+    -> (15, 115, 15, 'Dental X-Ray', '2025-01-26', 'Cavity detected', 600, 'Completed'),
+    ->
+    -> (16, 116, 16, 'Psychological Assessment', '2025-03-12', 'Mild anxiety', 1500, 'Completed'),
+    -> (17, 117, 17, 'Blood Sugar Test', '2025-02-16', 'High fasting levels', 350, 'Completed'),
+    -> (18, 118, 18, 'Kidney Function Test', '2025-02-23', 'Creatinine slightly elevated', 900, 'Completed'),
+    -> (19, 119, 19, 'Pre-Anesthesia Test', '2025-01-20', 'Fit for procedure', 1100, 'Completed'),
+    -> (20, 120, 20, 'Lipid Profile', '2025-03-12', 'LDL borderline high', 800, 'Completed'),
+    ->
+    -> (21, 121, 21, 'Dermatoscopy', '2025-02-20', 'Benign lesion', 700, 'Completed'),
+    -> (22, 122, 22, 'Angiography', '2025-01-04', 'Minor blockage detected', 6500, 'Completed');
+Query OK, 22 rows affected (0.01 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Allergies (
+    ->     allergy_id INT PRIMARY KEY,
+    ->     patient_id INT,
+    ->     allergy_name VARCHAR(50),
+    ->     allergy_type VARCHAR(50),
+    ->     severity VARCHAR(20),
+    ->     reaction VARCHAR(100),
+    ->     recorded_date DATE
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Allergies (allergy_id, patient_id, allergy_name, allergy_type, severity, reaction, recorded_date) VALUES
+    -> (1, 101, 'Peanuts', 'Food', 'Severe', 'Anaphylaxis', '2023-01-12'),
+    -> (2, 102, 'Dust Mites', 'Environmental', 'Moderate', 'Sneezing, Runny Nose', '2023-02-20'),
+    -> (3, 103, 'Penicillin', 'Drug', 'Severe', 'Rash, Breathing Issues', '2023-03-02'),
+    -> (4, 104, 'Pollen', 'Environmental', 'Mild', 'Itchy Eyes', '2023-03-15'),
+    -> (5, 105, 'Seafood', 'Food', 'Severe', 'Hives, Swelling', '2023-04-10'),
+    -> (6, 106, 'Aspirin', 'Drug', 'Moderate', 'Skin Rash', '2023-04-25'),
+    -> (7, 107, 'Milk', 'Food', 'Mild', 'Bloating, Stomach Pain', '2023-05-03'),
+    -> (8, 108, 'Latex', 'Material', 'Severe', 'Swelling, Rash', '2023-05-18'),
+    -> (9, 109, 'Bees', 'Insect', 'Severe', 'Anaphylaxis', '2023-06-02'),
+    -> (10, 110, 'Gluten', 'Food', 'Moderate', 'Digestive Issues', '2023-06-10'),
+    -> (11, 111, 'Eggs', 'Food', 'Mild', 'Skin Rash', '2023-07-01'),
+    -> (12, 112, 'Mold', 'Environmental', 'Moderate', 'Cough, Congestion', '2023-07-15'),
+    -> (13, 113, 'Chocolate', 'Food', 'Mild', 'Headache', '2023-07-29'),
+    -> (14, 114, 'Ibuprofen', 'Drug', 'Severe', 'Breathing Difficulty', '2023-08-05'),
+    -> (15, 115, 'Soy', 'Food', 'Moderate', 'Stomach Ache', '2023-08-22'),
+    -> (16, 116, 'Pet Dander', 'Environmental', 'Mild', 'Sneezing', '2023-09-02'),
+    -> (17, 117, 'Shellfish', 'Food', 'Severe', 'Swelling, Hives', '2023-09-15'),
+    -> (18, 118, 'Perfume', 'Chemical', 'Moderate', 'Headache, Nausea', '2023-09-28'),
+    -> (19, 119, 'Fabric Dye', 'Chemical', 'Mild', 'Skin Irritation', '2023-10-10'),
+    -> (20, 120, 'Insect Bites', 'Insect', 'Moderate', 'Redness, Swelling', '2023-11-01'),
+    -> (21, 121, 'Nuts', 'Food', 'Severe', 'Anaphylaxis', '2023-11-12'),
+    -> (22, 122, 'Antibiotics', 'Drug', 'Moderate', 'Rash', '2023-11-25');
+Query OK, 22 rows affected (0.01 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Vaccinations (
+    ->     vaccination_id INT PRIMARY KEY,
+    ->     patient_id INT,
+    ->     vaccine_name VARCHAR(100),
+    ->     dose_number INT,
+    ->     vaccination_date DATE,
+    ->     administered_by VARCHAR(100),
+    ->     next_due_date DATE
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Vaccinations
+    -> (vaccination_id, patient_id, vaccine_name, dose_number, vaccination_date, administered_by, next_due_date)
+    -> VALUES
+    -> (1, 101, 'COVID-19 (Covishield)', 1, '2023-01-10', 'Dr. Arjun Mehta', '2023-02-10'),
+    -> (2, 102, 'COVID-19 (Covishield)', 2, '2023-02-15', 'Dr. Priya Nair', NULL),
+    -> (3, 103, 'Tetanus (TT)', 1, '2023-03-01', 'Dr. Riya Sharma', '2033-03-01'),
+    -> (4, 104, 'Hepatitis B', 1, '2023-03-18', 'Dr. Arjun Mehta', '2023-04-18'),
+    -> (5, 105, 'Hepatitis B', 2, '2023-04-18', 'Dr. Rohan Gupta', '2023-10-18'),
+    -> (6, 106, 'Influenza', 1, '2023-04-30', 'Nurse Kavita Rao', '2024-04-30'),
+    -> (7, 107, 'MMR', 1, '2023-05-12', 'Dr. Priya Nair', NULL),
+    -> (8, 108, 'Chickenpox', 1, '2023-05-28', 'Dr. Riya Sharma', NULL),
+    -> (9, 109, 'Rabies', 1, '2023-06-10', 'Dr. Rohan Gupta', '2023-06-17'),
+    -> (10, 110, 'Rabies', 2, '2023-06-17', 'Dr. Rohan Gupta', '2023-06-24'),
+    -> (11, 111, 'Typhoid', 1, '2023-06-30', 'Nurse Kavita Rao', '2026-06-30'),
+    -> (12, 112, 'Polio (OPV)', 1, '2023-07-14', 'Dr. Arjun Mehta', NULL),
+    -> (13, 113, 'Polio (OPV)', 2, '2023-07-28', 'Dr. Priya Nair', NULL),
+    -> (14, 114, 'Pneumococcal', 1, '2023-08-05', 'Dr. Riya Sharma', NULL),
+    -> (15, 115, 'HPV', 1, '2023-08-18', 'Dr. Arjun Mehta', '2024-02-18'),
+    -> (16, 116, 'Hepatitis A', 1, '2023-09-01', 'Dr. Rohan Gupta', '2023-10-01'),
+    -> (17, 117, 'Hepatitis A', 2, '2023-10-01', 'Dr. Priya Nair', NULL),
+    -> (18, 118, 'Rotavirus', 1, '2023-09-20', 'Nurse Kavita Rao', NULL),
+    -> (19, 119, 'DTP', 1, '2023-10-10', 'Dr. Arjun Mehta', '2023-11-10'),
+    -> (20, 120, 'DTP', 2, '2023-11-10', 'Dr. Priya Nair', '2024-11-10'),
+    -> (21, 121, 'COVID-19 (Covaxin)', 1, '2023-11-25', 'Dr. Riya Sharma', '2023-12-25'),
+    -> (22, 122, 'COVID-19 (Covaxin)', 2, '2023-12-25', 'Dr. Rohan Gupta', NULL);
+Query OK, 22 rows affected (0.01 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Records (
+    ->     record_id INT PRIMARY KEY,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     visit_date DATE,
+    ->     diagnosis VARCHAR(200),
+    ->     notes VARCHAR(300)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Records
+    -> (record_id, patient_id, doctor_id, visit_date, diagnosis, notes)
+    -> VALUES
+    -> (1, 101, 201, '2023-01-10', 'Fever and Cold', 'Prescribed rest and paracetamol. Follow-up after 5 days.'),
+    -> (2, 102, 202, '2023-01-18', 'Migraine', 'Suggested MRI if headache persists.'),
+    -> (3, 103, 203, '2023-02-01', 'Allergic Reaction', 'Given antihistamines; advised to avoid allergens.'),
+    -> (4, 104, 204, '2023-02-14', 'Chest Pain', 'Recommended ECG; possible muscular strain.'),
+    -> (5, 105, 205, '2023-02-20', 'Gastritis', 'Started antacid treatment. Diet changes advised.'),
+    -> (6, 106, 201, '2023-03-05', 'Throat Infection', 'Prescribed antibiotics for 5 days.'),
+    -> (7, 107, 202, '2023-03-12', 'Skin Rash', 'Applied ointment; advised dermatology consult if not improved.'),
+    -> (8, 108, 203, '2023-03-25', 'Back Pain', 'Physiotherapy suggested for 2 weeks.'),
+    -> (9, 109, 204, '2023-04-04', 'Fracture (Left Arm)', 'Plaster applied; follow-up after 3 weeks.'),
+    -> (10, 110, 205, '2023-04-18', 'Ear Infection', 'Antibiotic drops given.'),
+    -> (11, 111, 201, '2023-05-01', 'Dehydration', 'IV fluids administered; recovery stable.'),
+    -> (12, 112, 202, '2023-05-14', 'Asthma Attack', 'Inhaler dosage adjusted.'),
+    -> (13, 113, 203, '2023-06-02', 'Diabetes Checkup', 'Blood sugar levels monitored; diet plan updated.'),
+    -> (14, 114, 204, '2023-06:15', 'High Blood Pressure', 'BP medications updated; monthly follow-up.'),
+    -> (15, 115, 205, '2023-06-30', 'Viral Fever', 'Prescribed rest and hydration.'),
+    -> (16, 116, 201, '2023-07-12', 'Anxiety', 'Counseling recommended.'),
+    -> (17, 117, 202, '2023-07-25', 'Sprain (Ankle)', 'Bandage applied; advised no heavy movement.'),
+    -> (18, 118, 203, '2023-08-10', 'Thyroid Checkup', 'TSH levels slightly high; medication adjusted.'),
+    -> (19, 119, 204, '2023-08-28', 'Food Poisoning', 'Given ORS and antibiotics.'),
+    -> (20, 120, 205, '2023-09-11', 'Eye Infection', 'Prescribed antibacterial eye drops.'),
+    -> (21, 121, 201, '2023-09-25', 'Sinusitis', 'Steam inhalation recommended.'),
+    -> (22, 122, 202, '2023-10-05', 'Joint Pain', 'Prescribed vitamin D supplements.');
+Query OK, 22 rows affected, 1 warning (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 1
+
+mysql> CREATE TABLE Surgeries (
+    ->     surgery_id INT PRIMARY KEY,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     surgery_date DATE,
+    ->     surgery_type VARCHAR(100),
+    ->     surgery_status VARCHAR(50),
+    ->     notes VARCHAR(300)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Surgeries
+    -> (surgery_id, patient_id, doctor_id, surgery_date, surgery_type, surgery_status, notes)
+    -> VALUES
+    -> (1, 101, 22, '2023-01-15', 'Heart Bypass Surgery', 'Completed', 'Successful CABG procedure; recovery normal.'),
+    -> (2, 102, 4, '2023-02-01', 'C-Section Delivery', 'Completed', 'Mother and baby stable.'),
+    -> (3, 103, 3, '2023-02-10', 'Knee Replacement', 'Completed', 'Prosthetic implant fitted successfully.'),
+    -> (4, 104, 17, '2023-03-05', 'Appendectomy', 'Completed', 'Appendix removed laparoscopically.'),
+    -> (5, 105, 18, '2023-03-18', 'Kidney Stone Removal', 'Completed', 'Laser lithotripsy performed.'),
+    -> (6, 106, 1, '2023-04-02', 'Angioplasty', 'Completed', 'Two stents inserted successfully.'),
+    -> (7, 107, 5, '2023-04-20', 'Brain Tumor Removal', 'Completed', 'Tumor removed with minimal complications.'),
+    -> (8, 108, 22, '2023-05-01', 'Heart Valve Replacement', 'Completed', 'Mitral valve replaced.'),
+    -> (9, 109, 3, '2023-05-22', 'Hip Replacement', 'Completed', 'Rehabilitation recommended for 6 weeks.'),
+    -> (10, 110, 10, '2023-06-03', 'Sinus Surgery', 'Completed', 'Sinus cleaned successfully.'),
+    -> (11, 111, 7, '2023-06-15', 'Prostate Surgery', 'Completed', 'Laser resection performed.'),
+    -> (12, 112, 17, '2023-07-01', 'Gallbladder Removal', 'Completed', 'Laparoscopic cholecystectomy performed.'),
+    -> (13, 113, 14, '2023-07-19', 'Cataract Surgery', 'Completed', 'Lens implant fitted.'),
+    -> (14, 114, 3, '2023-08-05', 'Spine Surgery', 'Completed', 'Spinal disc repaired.'),
+    -> (15, 115, 2, '2023-08-22', 'Skin Grafting', 'Completed', 'Burn wounds treated.'),
+    -> (16, 116, 6, '2023-09-01', 'Tonsillectomy', 'Completed', 'Recovery expected in 10 days.'),
+    -> (17, 117, 7, '2023-09-15', 'Bladder Surgery', 'Completed', 'No complications observed.'),
+    -> (18, 118, 13, '2023-10-01', 'Endoscopy', 'Completed', 'Biopsy sample taken.'),
+    -> (19, 119, 8, '2023-10-18', 'Thyroid Surgery', 'Completed', 'Partial thyroidectomy done.'),
+    -> (20, 120, 20, '2023-11-05', 'Biopsy', 'Completed', 'Awaiting lab results.'),
+    -> (21, 121, 5, '2023-11-20', 'Neurosurgery', 'Ongoing', 'Patient under observation.'),
+    -> (22, 122, 18, '2023-12-01', 'Kidney Transplant', 'Scheduled', 'Donor matching completed.');
+Query OK, 22 rows affected (0.01 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Insurance (
+    ->     insurance_id INT PRIMARY KEY,
+    ->     patient_id INT,
+    ->     provider_name VARCHAR(100),
+    ->     policy_number VARCHAR(50),
+    ->     coverage_type VARCHAR(50),
+    ->     valid_from DATE,
+    ->     valid_to DATE,
+    ->     coverage_amount DECIMAL(10,2),
+    ->     status VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Insurance
+    -> (insurance_id, patient_id, provider_name, policy_number, coverage_type, valid_from, valid_to, coverage_amount, status)
+    -> VALUES
+    -> (1, 101, 'Star Health Insurance', 'STH12345', 'Full Coverage', '2023-01-01', '2024-01-01', 500000.00, 'Active'),
+    -> (2, 102, 'HDFC ERGO', 'HDF56789', 'Partial Coverage', '2023-02-10', '2024-02-10', 300000.00, 'Active'),
+    -> (3, 103, 'ICICI Lombard', 'ICI23456', 'Full Coverage', '2023-03-01', '2024-03-01', 450000.00, 'Active'),
+    -> (4, 104, 'Tata AIG', 'TAI99887', 'Full Coverage', '2023-01-15', '2023-12-31', 600000.00, 'Expired'),
+    -> (5, 105, 'Reliance Health', 'REL77889', 'Partial Coverage', '2023-04-10', '2024-04-10', 250000.00, 'Active'),
+    -> (6, 106, 'Bajaj Allianz', 'BAJ55667', 'Full Coverage', '2023-03-20', '2024-03-20', 700000.00, 'Active'),
+    -> (7, 107, 'United India Insurance', 'UNI11223', 'Partial Coverage', '2023-05-01', '2024-05-01', 200000.00, 'Active'),
+    -> (8, 108, 'Star Health Insurance', 'STH99887', 'Full Coverage', '2023-06-01', '2024-06-01', 550000.00, 'Active'),
+    -> (9, 109, 'HDFC ERGO', 'HDF33445', 'Full Coverage', '2023-07-10', '2024-07-10', 480000.00, 'Active'),
+    -> (10, 110, 'ICICI Lombard', 'ICI88776', 'Partial Coverage', '2023-08-18', '2024-08-18', 300000.00, 'Active'),
+    -> (11, 111, 'Tata AIG', 'TAI55443', 'Full Coverage', '2023-09-01', '2024-09-01', 650000.00, 'Active'),
+    -> (12, 112, 'Reliance Health', 'REL67432', 'Full Coverage', '2023-10-10', '2024-10-10', 500000.00, 'Active'),
+    -> (13, 113, 'Bajaj Allianz', 'BAJ22009', 'Partial Coverage', '2023-01-12', '2024-01-12', 150000.00, 'Active'),
+    -> (14, 114, 'United India Insurance', 'UNI43112', 'Full Coverage', '2023-02-17', '2024-02-17', 550000.00, 'Active'),
+    -> (15, 115, 'Star Health Insurance', 'STH55678', 'Partial Coverage', '2023-03-25', '2024-03-25', 200000.00, 'Active'),
+    -> (16, 116, 'HDFC ERGO', 'HDF76543', 'Full Coverage', '2023-04-07', '2024-04-07', 620000.00, 'Active'),
+    -> (17, 117, 'ICICI Lombard', 'ICI99881', 'Partial Coverage', '2023-05-13', '2024-05-13', 250000.00, 'Active'),
+    -> (18, 118, 'Tata AIG', 'TAI33322', 'Full Coverage', '2023-06-22', '2024-06-22', 700000.00, 'Active'),
+    -> (19, 119, 'Bajaj Allianz', 'BAJ88001', 'Full Coverage', '2023-07-01', '2024-07-01', 550000.00, 'Active'),
+    -> (20, 120, 'Reliance Health', 'REL11335', 'Partial Coverage', '2023-07-20', '2024-07-20', 180000.00, 'Active'),
+    -> (21, 121, 'United India Insurance', 'UNI76533', 'Full Coverage', '2023-08-01', '2024-08-01', 600000.00, 'Active'),
+    -> (22, 122, 'Star Health Insurance', 'STH44321', 'Partial Coverage', '2023-09-10', '2024-09-10', 220000.00, 'Active');
+Query OK, 22 rows affected (0.01 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Hospitalization (
+    ->     hospitalization_id INT PRIMARY KEY,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     admission_date DATE,
+    ->     discharge_date DATE,
+    ->     room_number VARCHAR(10),
+    ->     reason VARCHAR(200),
+    ->     status VARCHAR(30)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Hospitalization
+    -> (hospitalization_id, patient_id, doctor_id, admission_date, discharge_date, room_number, reason, status)
+    -> VALUES
+    -> (1, 101, 1, '2023-01-05', '2023-01-12', 'A101', 'Chest Pain – Observation', 'Discharged'),
+    -> (2, 102, 2, '2023-01-18', '2023-01-22', 'B202', 'Severe Allergy Reaction', 'Discharged'),
+    -> (3, 103, 3, '2023-02-01', '2023-02-10', 'C303', 'Knee Surgery Recovery', 'Discharged'),
+    -> (4, 104, 4, '2023-02-15', '2023-02-17', 'A102', 'Appendix Pain – Emergency', 'Discharged'),
+    -> (5, 105, 5, '2023-02-20', '2023-02-25', 'B205', 'Seizure Observation', 'Discharged'),
+    -> (6, 106, 6, '2023-03-04', '2023-03-09', 'C301', 'Severe Throat Infection', 'Discharged'),
+    -> (7, 107, 7, '2023-03-18', '2023-03-23', 'A110', 'Urinary Infection Treatment', 'Discharged'),
+    -> (8, 108, 8, '2023-04-01', '2023-04-06', 'B210', 'Hormonal Imbalance – Monitoring', 'Discharged'),
+    -> (9, 109, 9, '2023-04-11', '2023-04-18', 'C304', 'MRI & Radiology Testing', 'Discharged'),
+    -> (10, 110, 10, '2023-04-25', '2023-04-30', 'A107', 'Severe Ear Infection', 'Discharged'),
+    -> (11, 111, 11, '2023-05-10', '2023-05-14', 'B215', 'Breathing Difficulty – Asthma', 'Discharged'),
+    -> (12, 112, 12, '2023-05-28', '2023-06-05', 'C308', 'Cancer Treatment Cycle', 'Discharged'),
+    -> (13, 113, 13, '2023-06-11', '2023-06-16', 'A115', 'Liver & Stomach Issues', 'Discharged'),
+    -> (14, 114, 14, '2023-06-22', '2023-06-28', 'B220', 'Eye Surgery Recovery', 'Discharged'),
+    -> (15, 115, 15, '2023-07-06', '2023-07-09', 'C310', 'Dental Surgery Recovery', 'Discharged'),
+    -> (16, 116, 16, '2023-07-21', '2023-07-29', 'A120', 'Psychiatric Evaluation', 'Discharged'),
+    -> (17, 117, 17, '2023-08-02', '2023-08-08', 'B225', 'Gallbladder Infection', 'Discharged'),
+    -> (18, 118, 18, '2023-08-15', '2023-08-22', 'C315', 'Kidney Treatment & Tests', 'Discharged'),
+    -> (19, 119, 19, '2023-09-01', '2023-09-06', 'A130', 'Anaesthesia Reaction', 'Discharged'),
+    -> (20, 120, 20, '2023-09-14', '2023-09-18', 'B230', 'TB Test & Monitoring', 'Discharged'),
+    -> (21, 121, 21, '2023-10-01', '2023-10-06', 'C320', 'Skin Allergy Treatment', 'Discharged'),
+    -> (22, 122, 22, '2023-10-18', '2023-10-25', 'A140', 'Heart Surgery Recovery', 'Discharged');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql>
