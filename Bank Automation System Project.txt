@@ -1,0 +1,842 @@
+package javaCaseStudy;
+
+	import java.util.Date;
+
+	import java.util.*;
+
+	class BankModel {
+
+		Account[] accounts = new Account[100];
+		int index = 0;
+
+		void addAccount(Account acc) {
+			accounts[index++] = acc;
+		}
+
+		Account getAccount(String accNum) {
+			for (int i = 0; i < index; i++)
+				if (accounts[i].getAccountNumber().equals(accNum))
+					return accounts[i];
+			return null;
+		}
+
+		void showAllAccounts() {
+			if (index == 0) {
+				System.out.println("No accounts found!");
+
+			}
+
+			System.out.println("\n----- ALL ACCOUNTS -----");
+
+			for (int i = 0; i < index; i++) {
+				accounts[i].displayAccount(); // Account class ka print function
+				System.out.println("------------------------");
+			}
+		}
+
+		void showTransactionDetails(String accNum) {
+
+			// Step 1: Account find karo
+			for (int i = 0; i < index; i++) {
+				if (accounts[i].getAccountNumber().equals(accNum)) {
+
+					Account acc = accounts[i];
+
+					// Step 2: Agar koi transaction nahi hai
+					if (acc.txnIndex == 0) {
+						System.out.println("No transactions found for this account.");
+						return;
+					}
+
+					System.out.println("\n----- Transaction History for Account: " + accNum + " -----");
+
+					// Step 3: print all transaction account
+
+					for (int j = 0; j < acc.txnIndex; j++) {
+						Transaction t = acc.transactions[j];
+
+						System.out.println("\nTxn ID   : " + t.txnId);
+						System.out.println("Type     : " + t.type);
+						System.out.println("Amount   : " + t.amount);
+						System.out.println("Date     : " + t.date);
+						System.out.println("------------------------------------");
+					}
+				}
+			}
+
+			System.out.println("Account not found!");
+		}
+
+		void showAllBankTransactions() {
+
+			boolean found = false;
+
+			System.out.println("\n===== ALL BANK TRANSACTIONS =====");
+
+			// Go through each account
+			for (int i = 0; i < index; i++) {
+
+				Account acc = accounts[i];
+
+				// Agar is account me transactions hai
+				if (acc.txnIndex > 0) {
+
+					found = true;
+
+					System.out.println("\n--- Transactions for Account: " + acc.getAccountNumber() + " ---");
+
+					// Print each transaction
+					for (int j = 0; j < acc.txnIndex; j++) {
+
+						Transaction t = acc.transactions[j];
+
+						System.out.println("\nTxn ID : " + t.txnId);
+						System.out.println("Type   : " + t.type);
+						System.out.println("Amount : " + t.amount);
+						System.out.println("Date   : " + t.date);
+						System.out.println("------------------------------------");
+					}
+				}
+			}
+
+			if (!found) {
+				System.out.println("\nNo transactions found in the bank.");
+			}
+		}
+
+		void removeAccount(String accNum) {
+
+			// Step 1: Find the Account
+			for (int i = 0; i < index; i++) {
+
+				if (accounts[i].getAccountNumber().equals(accNum)) {
+
+					// Step 2: Shift remaining accounts left
+					for (int j = i; j < index - 1; j++) {
+						accounts[j] = accounts[j + 1];
+					}
+
+					accounts[index - 1] = null; // Last element null kar do
+					index--; // Total count reduce
+
+					System.out.println("Account removed successfully: " + accNum);
+					return;
+				}
+			}
+
+			System.out.println("Account not found! Cannot remove.");
+		}
+
+	}
+
+	class Transaction {
+
+		static int count = 1;
+
+		int txnId;
+		String accountNumber;
+		double amount;
+		String type;
+		String date;
+
+		Transaction(String accNum, double amt, String type) {
+			this.txnId = count++;
+			this.accountNumber = accNum;
+			this.amount = amt;
+			this.type = type;
+			this.date = java.time.LocalDateTime.now().toString();
+		}
+
+		void displayTransaction() {
+			System.out.println("\nTxnID: " + txnId + "\nAccount: " + accountNumber + "\nAmount: " + amount + "\nType: "
+					+ type + "\nDate: " + date);
+		}
+
+	}
+
+	// ===================================================================
+//	                     ACCOUNT BASE CLASS
+	// ===================================================================
+	abstract class Account {
+
+		String accountNumber;
+		String holderName;
+		double balance;
+
+		Transaction[] transactions = new Transaction[100];
+		int txnIndex = 0;
+
+		Account(String accNum, String name, double bal) {
+			this.accountNumber = accNum;
+			this.holderName = name;
+			this.balance = bal;
+		}
+
+		void deposit(double amt) {
+			balance += amt;
+			transactions[txnIndex++] = new Transaction(accountNumber, amt, "Deposit");
+			System.out.println("Deposit Successful!");
+		}
+
+		boolean withdraw(double amt) {
+			if (balance >= amt) {
+				balance -= amt;
+				transactions[txnIndex++] = new Transaction(accountNumber, amt, "Withdraw");
+				System.out.println("Withdraw Successful!");
+				return true;
+			}
+			System.out.println("Insufficient Balance!");
+			return false;
+		}
+
+		double getBalance() {
+			return balance;
+		}
+
+		String getAccountNumber() {
+			return accountNumber;
+		}
+
+		Transaction[] getTransactions() {
+			return transactions;
+		}
+
+		void displayAccount() {
+			System.out.println("\nAccount No: " + accountNumber);
+			System.out.println("Name: " + holderName);
+			System.out.println("Balance: " + balance);
+		}
+		abstract String getAccountType();
+
+	}
+
+	//===================================================================
+//	       Freezable CLASS
+	//===================================================================
+
+	interface Freezable {
+
+		void freezAccount();
+
+		void unFreezAccount();
+
+	}
+
+	// ===================================================================
+//	                SalaryAccount CLASS
+	// ===================================================================
+
+	class SalaryAccount extends Account implements Freezable {
+
+		String EmployeeID;
+		boolean isFrozen;
+		Date lastTransactionDate; // Track last txn date
+
+		SalaryAccount(String accNum, String name, double bal, String emp) {
+			super(accNum, name, bal);
+			this.EmployeeID = emp;
+			this.isFrozen = false;
+			this.lastTransactionDate = new Date(); // account created date
+		}
+
+		// -----------------------------
+		// Update last transaction date
+		// -----------------------------
+		void updateTransactionDate() {
+			this.lastTransactionDate = new Date();
+		}
+
+		// -----------------------------
+		// Credit salary
+		// -----------------------------
+		void creditSalary(double amt) {
+			if (!isFrozen) {
+				deposit(amt);
+				updateTransactionDate();
+			} else {
+				System.out.println("Account is Frozen. Salary cannot be credited!");
+			}
+		}
+
+		// -----------------------------
+		// Display details
+		// -----------------------------
+		@Override
+		void displayAccount() {
+			super.displayAccount();
+			System.out.println("EmployeeID: " + EmployeeID);
+			System.out.println("Accont Type:"+getAccountType());
+			System.out.println("Frozen: " + isFrozen);
+			System.out.println("Last Transaction: " + lastTransactionDate);
+		}
+
+		// -----------------------------
+		// Freezable methods
+		// -----------------------------
+		@Override
+		public void freezAccount() {
+			isFrozen = true;
+			System.out.println("Account has been Frozen.");
+		}
+
+		@Override
+		public void unFreezAccount() {
+			isFrozen = false;
+			updateTransactionDate();
+			System.out.println("Account has been Unfrozen.");
+		}
+
+		// ---------------------------------------
+		// Auto-freeze if no transaction in 2 months
+		// ---------------------------------------
+		public void checkIfShouldFreeze() {
+			long now = new Date().getTime();
+			long last = lastTransactionDate.getTime();
+
+			long diff = now - last; // milliseconds difference
+
+			long sixtyDays = 60L * 24 * 60 * 60 * 1000; // 60 days in millis
+
+			if (diff >= sixtyDays) {
+				freezAccount();
+			}
+		}
+		@Override
+		String getAccountType() {
+		    return "Salary Account";
+		}
+
+	}
+
+	//===================================================================
+//	               CurrentAccount CLASS
+	//===================================================================
+
+	class CurrentAccount extends Account implements Freezable {
+
+		final double overdraftLimit = 50000; // total overdraft limit
+		double overdraftUsed = 0; // how much overdraft is used
+		boolean isFrozen = false;
+
+		CurrentAccount(String accNum, String name, double bal) {
+			super(accNum, name, bal);
+
+		}
+
+		// -----------------------------
+		// Withdraw with overdraft logic
+		// -----------------------------
+		@Override
+		boolean withdraw(double amt) {
+
+			if (isFrozen) {
+				System.out.println("Account is Frozen! Withdrawal not allowed.");
+				return false;
+			}
+
+			double availableFunds = balance + (overdraftLimit - overdraftUsed);
+
+			if (availableFunds >= amt) {
+
+				// If balance is enough → normal withdraw
+				if (balance >= amt) {
+					balance -= amt;
+				}
+				// Otherwise overdraft is used
+				else {
+					double requiredOD = amt - balance;
+					balance = 0; // using full balance first
+					overdraftUsed += requiredOD;
+				}
+
+				// Save transaction
+				transactions[txnIndex++] = new Transaction(accountNumber, amt, "Withdraw");
+
+				System.out.println("Withdraw Successful (Overdraft used: " + overdraftUsed + ")");
+
+				checkOverdraftFinish(); // freeze check
+				return true;
+
+			} else {
+				System.out.println("Beyond Overdraft Limit!");
+				checkOverdraftFinish();
+				return false;
+			}
+		}
+
+		// -------------------------------------
+		// Check if overdraft is fully used → freeze
+		// -------------------------------------
+		private void checkOverdraftFinish() {
+			if (overdraftUsed >= overdraftLimit) {
+				freezAccount();
+			}
+		}
+
+		// -----------------------------
+		// Display
+		// -----------------------------
+		@Override
+		void displayAccount() {
+			super.displayAccount();
+			System.out.println("Accont Type:"+getAccountType());
+			System.out.println("Overdraft Limit: " + overdraftLimit);
+			System.out.println("Overdraft Used: " + overdraftUsed);
+			System.out.println("Frozen: " + isFrozen);
+		}
+
+		// -----------------------------
+		// Freezable methods
+		// -----------------------------
+		@Override
+		public void freezAccount() {
+			isFrozen = true;
+			System.out.println("Account Frozen — Overdraft Limit Exhausted!");
+		}
+
+		@Override
+		public void unFreezAccount() {
+			isFrozen = false;
+			System.out.println("Account Unfrozen.");
+		}
+		@Override
+		String getAccountType() {
+		    return "Current Account";
+		}
+
+	}
+
+	//===================================================================
+//	          InterestApplicable CLASS
+	//===================================================================
+
+	interface InterestApplicable {
+		double calculateInterest();
+	}
+
+	//===================================================================
+//	          SavingAccount CLASS
+	//===================================================================
+
+	class SavingAccount extends Account implements InterestApplicable {
+
+		static double minBalance() {
+			return 20000;
+		}
+
+		static double interestRate() {
+			return 2.5;
+		}
+
+		SavingAccount(String accNum, String name, double bal) {
+			super(accNum, name, bal);
+
+		}
+
+		public double calculateInterest() {
+			return balance * (SavingAccount.interestRate() / 100);
+		}
+
+		@Override
+		void displayAccount() {
+			super.displayAccount();
+			System.out.println("Accont Type:"+getAccountType());
+			System.out.println("Min Balance: " + SavingAccount.minBalance());
+			System.out.println("Interest Rate: " + SavingAccount.interestRate());
+		}
+		@Override
+		String getAccountType() {
+		    return "Savings Account";
+		}
+
+
+	}
+	//===================================================================
+//	          LoanAccount CLASS
+	//===================================================================
+
+	class LoanAccount extends Account implements InterestApplicable {
+
+	    double loanAmount;
+
+	    static double emi() {
+	        return 1500;
+	    }
+
+	    static double interestRate() {
+	        return 5.7;
+	    }
+
+	    // LoanAccount constructor
+	    LoanAccount(String accNum, String name, double loanAmt) {
+	        super(accNum, name, loanAmt); // balance automatically = loanAmt
+	        this.loanAmount = loanAmt;
+	    }
+
+	    @Override
+	    void deposit(double amt) {
+	        if (amt <= 0) {
+	            System.out.println("Invalid amount!");
+	            return;
+	        }
+
+	        // EMI / Loan reduce logic
+	        if (amt > loanAmount) {
+	            System.out.println("Deposit amount exceeds remaining loan. Only remaining loan will be paid.");
+	            amt = loanAmount;
+	        }
+
+	        loanAmount -= amt;
+
+	        // Transaction record
+	        transactions[txnIndex++] = new Transaction(accountNumber, amt, "Loan Payment");
+
+	        System.out.println("Deposit Successful! Remaining Loan: " + loanAmount);
+
+	        // Update balance too if you want balance to reflect loan (optional)
+	        balance = loanAmount;
+	    }
+
+
+	    @Override
+	    void displayAccount() {
+	        super.displayAccount();
+	        System.out.println("Account Type: " + getAccountType());
+	        System.out.println("Loan Amount: " + loanAmount);
+	        System.out.println("EMI: " + LoanAccount.emi());
+	        System.out.println("Interest Rate: " + LoanAccount.interestRate());
+	    }
+
+	    @Override
+	    public double calculateInterest() {
+	        return loanAmount * (LoanAccount.interestRate() / 100);
+	    }
+
+	    @Override
+	    String getAccountType() {
+	        return "Loan Account";
+	    }
+	}
+
+
+	class BankView {
+
+		// Main Menu
+		void displayMenu() {
+			System.out.println("\n===== BANK MENU =====");
+			System.out.println("1. Create Account");
+			System.out.println("2.remove Account");
+			System.out.println("3. Deposit");
+			System.out.println("4. Withdraw");
+			System.out.println("5. Transfer");
+			System.out.println("6. Show Account Details");
+			System.out.println("7. Show Transaction History");
+			System.out.println("8. Show All Accounts");
+			System.out.println("9. Show All Bank Transactions");
+			System.out.println("10. Exit");
+			System.out.print("Enter your choice: ");
+		}
+
+		// Display single account details
+		void showAccount(Account acc) {
+			System.out.println("\n===== ACCOUNT DETAILS =====");
+			acc.displayAccount();
+			System.out.println("----------------------------");
+		}
+
+		// Display complete transaction history of a single account
+		void showTransactions(Account acc) {
+
+			System.out.println("\n===== TRANSACTION HISTORY =====");
+
+			if (acc.txnIndex == 0) {
+				System.out.println("No transactions found!");
+				return;
+			}
+
+			for (int i = 0; i < acc.txnIndex; i++) {
+				acc.transactions[i].displayTransaction();
+				System.out.println("-----------------------------");
+			}
+		}
+
+		// Display all bank accounts
+		void showAllAccounts(BankModel bank) {
+			bank.showAllAccounts();
+		}
+
+		// Display all bank-wide transactions
+		void showBankTransactions(BankModel bank) {
+			bank.showAllBankTransactions();
+		}
+
+		void exitMessage() {
+			System.out.println("\nThank you for using the Banking System!");
+		}
+	}
+
+	class BankController {
+
+		BankModel model = new BankModel();
+		BankView view = new BankView();
+		Scanner sc = new Scanner(System.in);
+		static int accCounter = 1000000001;
+
+		void start() {
+
+			while (true) {
+				view.displayMenu();
+				int choice = sc.nextInt();
+				sc.nextLine();
+
+				switch (choice) {
+				case 1:
+					createAccount();
+					break;
+				case 2:
+					removeAccount();
+					break;
+				case 3:
+					depositMoney();
+					break;
+
+				case 4:
+					withdrawMoney();
+					break;
+
+				case 5:
+					transferMoney();
+					break;
+
+				case 6:
+					showAccountDetails();
+					break;
+
+				case 7:
+					showTransactionHistory();
+					break;
+
+				case 8:
+					model.showAllAccounts();
+					break;
+
+				case 9:
+					model.showAllBankTransactions();
+					break;
+
+				case 10:
+					view.exitMessage();
+					return;
+
+				default:
+					System.out.println("Invalid choice!");
+				}
+			}
+		}
+
+		// ==========================================================
+		// 1. CREATE ACCOUNT
+		// ==========================================================
+		void createAccount() {
+
+		    System.out.println("\nSelect Account Type:");
+		    System.out.println("1. Savings Account");
+		    System.out.println("2. Salary Account");
+		    System.out.println("3. Current Account");
+		    System.out.println("4. Loan Account");
+		    System.out.print("Enter type: ");
+
+		    int type = sc.nextInt();
+		    sc.nextLine(); // remove newline
+
+		    System.out.print("Enter Holder Name: ");
+		    String name = sc.nextLine();
+
+		    String accNum = "ACC" + accCounter++; // auto-generate
+		    Account acc = null;
+
+		    switch (type) {
+
+		    // ---------------- Savings Account ------------------
+		    case 1:
+		        System.out.print("Enter Opening Balance: ");
+		        double savBal = sc.nextDouble();
+		        sc.nextLine();
+		        acc = new SavingAccount(accNum, name, savBal);
+		        break;
+
+		    // ---------------- Salary Account -------------------
+		    case 2:
+		        System.out.print("Enter Opening Balance: ");
+		        double salBal = sc.nextDouble();
+		        sc.nextLine();
+		        System.out.print("Enter Employee ID: ");
+		        String empId = sc.nextLine();
+		        acc = new SalaryAccount(accNum, name, salBal, empId);
+		        break;
+
+		    // ---------------- Current Account ------------------
+		    case 3:
+		        System.out.print("Enter Opening Balance: ");
+		        double curBal = sc.nextDouble();
+		        sc.nextLine();
+		        acc = new CurrentAccount(accNum, name, curBal);
+		        break;
+
+		    // ---------------- Loan Account ---------------------
+		    case 4:
+		        System.out.print("Enter Loan Amount: ");
+		        double loanAmt = sc.nextDouble();
+		        sc.nextLine();
+
+		        // Opening balance automatically = loan amount
+		        acc = new LoanAccount(accNum, name, loanAmt);
+		        break;
+
+		       
+		    }
+
+		    model.addAccount(acc);
+		    System.out.println("\nAccount Number: " + accNum);
+		    System.out.println("Account Created Successfully!");
+		}
+
+
+		// ==========================================================
+		// 2. DEPOSIT
+		// ==========================================================
+		void depositMoney() {
+			System.out.print("Enter Account Number: ");
+			String accNum = sc.nextLine();
+
+			Account acc = model.getAccount(accNum);
+			if (acc == null) {
+				System.out.println("Account not found!");
+				return;
+			}
+
+			System.out.print("Enter Amount: ");
+			double amt = sc.nextDouble();
+
+			acc.deposit(amt);
+		}
+
+		// ==========================================================
+		// 3. WITHDRAW
+		// ==========================================================
+		void withdrawMoney() {
+			System.out.print("Enter Account Number: ");
+			String accNum = sc.nextLine();
+
+			Account acc = model.getAccount(accNum);
+			if (acc == null) {
+				System.out.println("Account not found!");
+				return;
+			}
+
+			System.out.print("Enter Amount: ");
+			double amt = sc.nextDouble();
+
+			acc.withdraw(amt);
+		}
+
+		// ==========================================================
+		// 4. TRANSFER
+		// ==========================================================
+		void transferMoney() {
+
+			System.out.print("Enter Sender Account Number: ");
+			String senderNum = sc.nextLine();
+			Account sender = model.getAccount(senderNum);
+
+			if (sender == null) {
+				System.out.println("Sender not found!");
+				return;
+			}
+
+			System.out.print("Enter Receiver Account Number: ");
+			String receiverNum = sc.nextLine();
+			Account receiver = model.getAccount(receiverNum);
+
+			if (receiver == null) {
+				System.out.println("Receiver not found!");
+				return;
+			}
+
+			System.out.print("Enter Amount: ");
+			double amt = sc.nextDouble();
+
+			if (sender.withdraw(amt)) {
+				receiver.deposit(amt);
+				System.out.println("Transfer Successful!");
+			} else {
+				System.out.println("Transfer Failed!");
+			}
+		}
+
+		// ==========================================================
+		// 5. SHOW ACCOUNT DETAILS
+		// ==========================================================
+		void showAccountDetails() {
+
+			System.out.print("Enter Account Number: ");
+			String accNum = sc.nextLine();
+
+			Account acc = model.getAccount(accNum);
+
+			if (acc == null) {
+				System.out.println("Account not found!");
+
+			}
+
+			// Check account type
+			if (acc instanceof SavingAccount) {
+				((SavingAccount) acc).displayAccount();
+			} else if (acc instanceof SalaryAccount) {
+				((SalaryAccount) acc).displayAccount();
+			} else if (acc instanceof CurrentAccount) {
+				((CurrentAccount) acc).displayAccount();
+			} else if (acc instanceof LoanAccount) {
+				((LoanAccount) acc).displayAccount();
+			}
+		}
+
+		// ==========================================================
+		// 6. SHOW TRANSACTION HISTORY
+		// ==========================================================
+		void showTransactionHistory() {
+
+			System.out.print("Enter Account Number: ");
+			String accNum = sc.nextLine();
+
+			Account acc = model.getAccount(accNum);
+
+			if (acc == null) {
+				System.out.println("Account not found!");
+				return;
+			}
+
+			view.showTransactions(acc);
+		}
+
+		void removeAccount() {
+			System.out.print("Enter Account Number to remove: ");
+			String accNum = sc.nextLine();
+
+			model.removeAccount(accNum);
+		}
+
+	}
+
+	class Main {
+		public static void main(String[] args) {
+
+			System.out.println("Welcome to Bank Management System!");
+
+			BankController controller = new BankController();
+			controller.start(); // Start interactive menu
+
+		}
+	}
+
+
