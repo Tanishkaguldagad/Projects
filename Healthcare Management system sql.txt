@@ -1,0 +1,1412 @@
+
+mysql> use sep25
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_sep25 |
++-----------------+
+| account         |
+| book            |
+| dept            |
+| employee        |
+| project_details |
+| shopping_cart   |
+| student         |
++-----------------+
+7 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Patient (
+    ->     Patient_id INT PRIMARY KEY,
+    ->     name VARCHAR(50) NOT NULL,
+    ->     gender CHAR(1),
+    ->     age INT,
+    ->     address VARCHAR(200),
+    ->     Contact_no VARCHAR(10),
+    ->     email VARCHAR(50) UNIQUE,
+    ->     Insurance_id INT,
+    ->     Blood_group VARCHAR(5)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Patient
+    -> (Patient_id, name, gender, age, address, Contact_no, email, Insurance_id, Blood_group)
+    -> VALUES
+    -> (1,'Amit Patil','M',25,'Pune','9876543210','amit@gmail.com',101,'B+'),
+    -> (2,'Sneha Joshi','F',23,'Mumbai','9876543211','sneha@gmail.com',102,'A+'),
+    -> (3,'Rohit Sharma','M',27,'Nashik','9876543212','rohit@gmail.com',103,'O+'),
+    -> (4,'Pooja Kulkarni','F',22,'Nagpur','9876543213','pooja@gmail.com',104,'AB+'),
+    -> (5,'Rahul Deshmukh','M',30,'Aurangabad','9876543214','rahul@gmail.com',105,'B-'),
+    -> (6,'Neha Patil','F',24,'Kolhapur','9876543215','neha@gmail.com',106,'A-'),
+    -> (7,'Karan Mehta','M',28,'Pune','9876543216','karan@gmail.com',107,'O-'),
+    -> (8,'Anjali Verma','F',21,'Mumbai','9876543217','anjali@gmail.com',108,'B+'),
+    -> (9,'Vikas Yadav','M',26,'Nashik','9876543218','vikas@gmail.com',109,'A+'),
+    -> (10,'Priya Singh','F',29,'Nagpur','9876543219','priya@gmail.com',110,'O+'),
+    ->
+    -> (11,'Sagar Pawar','M',31,'Pune','9876543220','sagar@gmail.com',111,'AB-'),
+    -> (12,'Riya Shah','F',20,'Mumbai','9876543221','riya@gmail.com',112,'B+'),
+    -> (13,'Aditya More','M',27,'Satara','9876543222','aditya@gmail.com',113,'A+'),
+    -> (14,'Komal Jadhav','F',23,'Solapur','9876543223','komal@gmail.com',114,'O-'),
+    -> (15,'Nikhil Patil','M',32,'Kolhapur','9876543224','nikhil@gmail.com',115,'B-'),
+    -> (16,'Shruti Kale','F',25,'Pune','9876543225','shruti@gmail.com',116,'A-'),
+    -> (17,'Manish Gupta','M',34,'Mumbai','9876543226','manish@gmail.com',117,'AB+'),
+    -> (18,'Aarti Singh','F',28,'Nagpur','9876543227','aarti@gmail.com',118,'O+'),
+    -> (19,'Deepak Yadav','M',26,'Nashik','9876543228','deepak@gmail.com',119,'B+'),
+    -> (20,'Meena Joshi','F',30,'Aurangabad','9876543229','meena@gmail.com',120,'A+'),
+    ->
+    -> (21,'Ramesh Shinde','M',35,'Satara','9876543230','ramesh@gmail.com',121,'O-'),
+    -> (22,'Kavita Patil','F',27,'Solapur','9876543231','kavita@gmail.com',122,'AB+');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> DESC PATIENT;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| Patient_id   | int          | NO   | PRI | NULL    |       |
+| name         | varchar(50)  | NO   |     | NULL    |       |
+| gender       | char(1)      | YES  |     | NULL    |       |
+| age          | int          | YES  |     | NULL    |       |
+| address      | varchar(200) | YES  |     | NULL    |       |
+| Contact_no   | varchar(10)  | YES  |     | NULL    |       |
+| email        | varchar(50)  | YES  | UNI | NULL    |       |
+| Insurance_id | int          | YES  |     | NULL    |       |
+| Blood_group  | varchar(5)   | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+9 rows in set (0.03 sec)
+
+mysql> TABLE PATIENT;
++------------+----------------+--------+------+------------+------------+------------------+--------------+-------------+
+| Patient_id | name           | gender | age  | address    | Contact_no | email            | Insurance_id | Blood_group |
++------------+----------------+--------+------+------------+------------+------------------+--------------+-------------+
+|          1 | Amit Patil     | M      |   25 | Pune       | 9876543210 | amit@gmail.com   |          101 | B+          |
+|          2 | Sneha Joshi    | F      |   23 | Mumbai     | 9876543211 | sneha@gmail.com  |          102 | A+          |
+|          3 | Rohit Sharma   | M      |   27 | Nashik     | 9876543212 | rohit@gmail.com  |          103 | O+          |
+|          4 | Pooja Kulkarni | F      |   22 | Nagpur     | 9876543213 | pooja@gmail.com  |          104 | AB+         |
+|          5 | Rahul Deshmukh | M      |   30 | Aurangabad | 9876543214 | rahul@gmail.com  |          105 | B-          |
+|          6 | Neha Patil     | F      |   24 | Kolhapur   | 9876543215 | neha@gmail.com   |          106 | A-          |
+|          7 | Karan Mehta    | M      |   28 | Pune       | 9876543216 | karan@gmail.com  |          107 | O-          |
+|          8 | Anjali Verma   | F      |   21 | Mumbai     | 9876543217 | anjali@gmail.com |          108 | B+          |
+|          9 | Vikas Yadav    | M      |   26 | Nashik     | 9876543218 | vikas@gmail.com  |          109 | A+          |
+|         10 | Priya Singh    | F      |   29 | Nagpur     | 9876543219 | priya@gmail.com  |          110 | O+          |
+|         11 | Sagar Pawar    | M      |   31 | Pune       | 9876543220 | sagar@gmail.com  |          111 | AB-         |
+|         12 | Riya Shah      | F      |   20 | Mumbai     | 9876543221 | riya@gmail.com   |          112 | B+          |
+|         13 | Aditya More    | M      |   27 | Satara     | 9876543222 | aditya@gmail.com |          113 | A+          |
+|         14 | Komal Jadhav   | F      |   23 | Solapur    | 9876543223 | komal@gmail.com  |          114 | O-          |
+|         15 | Nikhil Patil   | M      |   32 | Kolhapur   | 9876543224 | nikhil@gmail.com |          115 | B-          |
+|         16 | Shruti Kale    | F      |   25 | Pune       | 9876543225 | shruti@gmail.com |          116 | A-          |
+|         17 | Manish Gupta   | M      |   34 | Mumbai     | 9876543226 | manish@gmail.com |          117 | AB+         |
+|         18 | Aarti Singh    | F      |   28 | Nagpur     | 9876543227 | aarti@gmail.com  |          118 | O+          |
+|         19 | Deepak Yadav   | M      |   26 | Nashik     | 9876543228 | deepak@gmail.com |          119 | B+          |
+|         20 | Meena Joshi    | F      |   30 | Aurangabad | 9876543229 | meena@gmail.com  |          120 | A+          |
+|         21 | Ramesh Shinde  | M      |   35 | Satara     | 9876543230 | ramesh@gmail.com |          121 | O-          |
+|         22 | Kavita Patil   | F      |   27 | Solapur    | 9876543231 | kavita@gmail.com |          122 | AB+         |
++------------+----------------+--------+------+------------+------------+------------------+--------------+-------------+
+22 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Doctors (
+    ->     DoctorID INT PRIMARY KEY,
+    ->     DoctorName VARCHAR(100),
+    ->     Gender VARCHAR(10),
+    ->     Specialization VARCHAR(100),
+    ->     Qualification VARCHAR(100),
+    ->     ContactNumber VARCHAR(15),
+    ->     Email VARCHAR(100) UNIQUE,
+    ->     ExperienceYears INT,
+    ->     Address VARCHAR(255),
+    ->     JoiningDate DATE
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Doctors
+    -> (DoctorID, DoctorName, Gender, Specialization, Qualification, ContactNumber, Email, ExperienceYears, Address, JoiningDate)
+    -> VALUES
+    -> (1,'Dr. Amit Sharma','Male','Cardiologist','MBBS, MD','9000000001','amit.sharma@gmail.com',10,'Pune','2015-06-10'),
+    -> (2,'Dr. Sneha Patil','Female','Dermatologist','MBBS, MD','9000000002','sneha.patil@gmail.com',8,'Mumbai','2017-03-15'),
+    -> (3,'Dr. Rohit Verma','Male','Orthopedic','MBBS, MS','9000000003','rohit.verma@gmail.com',12,'Nashik','2013-09-20'),
+    -> (4,'Dr. Pooja Kulkarni','Female','Gynecologist','MBBS, MD','9000000004','pooja.k@gmail.com',9,'Nagpur','2016-11-05'),
+    -> (5,'Dr. Rahul Singh','Male','Neurologist','MBBS, DM','9000000005','rahul.s@gmail.com',15,'Aurangabad','2010-01-25'),
+    ->
+    -> (6,'Dr. Neha Joshi','Female','Pediatrician','MBBS, MD','9000000006','neha.j@gmail.com',7,'Kolhapur','2018-07-18'),
+    -> (7,'Dr. Karan Mehta','Male','General Physician','MBBS','9000000007','karan.m@gmail.com',6,'Pune','2019-04-12'),
+    -> (8,'Dr. Anjali Shah','Female','ENT Specialist','MBBS, MS','9000000008','anjali.s@gmail.com',11,'Mumbai','2014-08-22'),
+    -> (9,'Dr. Vikas Yadav','Male','Radiologist','MBBS, MD','9000000009','vikas.y@gmail.com',13,'Nashik','2012-02-14'),
+    -> (10,'Dr. Priya Deshmukh','Female','Psychiatrist','MBBS, MD','9000000010','priya.d@gmail.com',10,'Nagpur','2015-10-30'),
+    ->
+    -> (11,'Dr. Sagar Pawar','Male','Oncologist','MBBS, DM','9000000011','sagar.p@gmail.com',14,'Pune','2011-05-09'),
+    -> (12,'Dr. Riya Shah','Female','Dentist','BDS, MDS','9000000012','riya.s@gmail.com',5,'Mumbai','2020-01-01'),
+    -> (13,'Dr. Aditya More','Male','Urologist','MBBS, MS','9000000013','aditya.m@gmail.com',9,'Satara','2016-03-03'),
+    -> (14,'Dr. Komal Jadhav','Female','Ophthalmologist','MBBS, MS','9000000014','komal.j@gmail.com',8,'Solapur','2017-06-06'),
+    -> (15,'Dr. Nikhil Patil','Male','Cardiologist','MBBS, MD','9000000015','nikhil.p@gmail.com',12,'Kolhapur','2013-12-12'),
+    ->
+    -> (16,'Dr. Shruti Kale','Female','Dermatologist','MBBS, MD','9000000016','shruti.k@gmail.com',7,'Pune','2018-09-19'),
+    -> (17,'Dr. Manish Gupta','Male','Orthopedic','MBBS, MS','9000000017','manish.g@gmail.com',11,'Mumbai','2014-04-25'),
+    -> (18,'Dr. Aarti Singh','Female','Gynecologist','MBBS, MD','9000000018','aarti.s@gmail.com',10,'Nagpur','2015-07-07'),
+    -> (19,'Dr. Deepak Yadav','Male','Neurologist','MBBS, DM','9000000019','deepak.y@gmail.com',13,'Nashik','2012-11-11'),
+    -> (20,'Dr. Meena Joshi','Female','Pediatrician','MBBS, MD','9000000020','meena.j@gmail.com',9,'Aurangabad','2016-02-02'),
+    ->
+    -> (21,'Dr. Ramesh Shinde','Male','General Physician','MBBS','9000000021','ramesh.s@gmail.com',15,'Satara','2010-08-08'),
+    -> (22,'Dr. Kavita Patil','Female','ENT Specialist','MBBS, MS','9000000022','kavita.p@gmail.com',6,'Solapur','2019-12-12');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> DESC DOCTORS;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| DoctorID        | int          | NO   | PRI | NULL    |       |
+| DoctorName      | varchar(100) | YES  |     | NULL    |       |
+| Gender          | varchar(10)  | YES  |     | NULL    |       |
+| Specialization  | varchar(100) | YES  |     | NULL    |       |
+| Qualification   | varchar(100) | YES  |     | NULL    |       |
+| ContactNumber   | varchar(15)  | YES  |     | NULL    |       |
+| Email           | varchar(100) | YES  | UNI | NULL    |       |
+| ExperienceYears | int          | YES  |     | NULL    |       |
+| Address         | varchar(255) | YES  |     | NULL    |       |
+| JoiningDate     | date         | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> TABLE DOCTORS;
++----------+--------------------+--------+-------------------+---------------+---------------+-----------------------+-----------------+------------+-------------+
+| DoctorID | DoctorName         | Gender | Specialization    | Qualification | ContactNumber | Email                 | ExperienceYears | Address    | JoiningDate |
++----------+--------------------+--------+-------------------+---------------+---------------+-----------------------+-----------------+------------+-------------+
+|        1 | Dr. Amit Sharma    | Male   | Cardiologist      | MBBS, MD      | 9000000001    | amit.sharma@gmail.com |              10 | Pune       | 2015-06-10  |
+|        2 | Dr. Sneha Patil    | Female | Dermatologist     | MBBS, MD      | 9000000002    | sneha.patil@gmail.com |               8 | Mumbai     | 2017-03-15  |
+|        3 | Dr. Rohit Verma    | Male   | Orthopedic        | MBBS, MS      | 9000000003    | rohit.verma@gmail.com |              12 | Nashik     | 2013-09-20  |
+|        4 | Dr. Pooja Kulkarni | Female | Gynecologist      | MBBS, MD      | 9000000004    | pooja.k@gmail.com     |               9 | Nagpur     | 2016-11-05  |
+|        5 | Dr. Rahul Singh    | Male   | Neurologist       | MBBS, DM      | 9000000005    | rahul.s@gmail.com     |              15 | Aurangabad | 2010-01-25  |
+|        6 | Dr. Neha Joshi     | Female | Pediatrician      | MBBS, MD      | 9000000006    | neha.j@gmail.com      |               7 | Kolhapur   | 2018-07-18  |
+|        7 | Dr. Karan Mehta    | Male   | General Physician | MBBS          | 9000000007    | karan.m@gmail.com     |               6 | Pune       | 2019-04-12  |
+|        8 | Dr. Anjali Shah    | Female | ENT Specialist    | MBBS, MS      | 9000000008    | anjali.s@gmail.com    |              11 | Mumbai     | 2014-08-22  |
+|        9 | Dr. Vikas Yadav    | Male   | Radiologist       | MBBS, MD      | 9000000009    | vikas.y@gmail.com     |              13 | Nashik     | 2012-02-14  |
+|       10 | Dr. Priya Deshmukh | Female | Psychiatrist      | MBBS, MD      | 9000000010    | priya.d@gmail.com     |              10 | Nagpur     | 2015-10-30  |
+|       11 | Dr. Sagar Pawar    | Male   | Oncologist        | MBBS, DM      | 9000000011    | sagar.p@gmail.com     |              14 | Pune       | 2011-05-09  |
+|       12 | Dr. Riya Shah      | Female | Dentist           | BDS, MDS      | 9000000012    | riya.s@gmail.com      |               5 | Mumbai     | 2020-01-01  |
+|       13 | Dr. Aditya More    | Male   | Urologist         | MBBS, MS      | 9000000013    | aditya.m@gmail.com    |               9 | Satara     | 2016-03-03  |
+|       14 | Dr. Komal Jadhav   | Female | Ophthalmologist   | MBBS, MS      | 9000000014    | komal.j@gmail.com     |               8 | Solapur    | 2017-06-06  |
+|       15 | Dr. Nikhil Patil   | Male   | Cardiologist      | MBBS, MD      | 9000000015    | nikhil.p@gmail.com    |              12 | Kolhapur   | 2013-12-12  |
+|       16 | Dr. Shruti Kale    | Female | Dermatologist     | MBBS, MD      | 9000000016    | shruti.k@gmail.com    |               7 | Pune       | 2018-09-19  |
+|       17 | Dr. Manish Gupta   | Male   | Orthopedic        | MBBS, MS      | 9000000017    | manish.g@gmail.com    |              11 | Mumbai     | 2014-04-25  |
+|       18 | Dr. Aarti Singh    | Female | Gynecologist      | MBBS, MD      | 9000000018    | aarti.s@gmail.com     |              10 | Nagpur     | 2015-07-07  |
+|       19 | Dr. Deepak Yadav   | Male   | Neurologist       | MBBS, DM      | 9000000019    | deepak.y@gmail.com    |              13 | Nashik     | 2012-11-11  |
+|       20 | Dr. Meena Joshi    | Female | Pediatrician      | MBBS, MD      | 9000000020    | meena.j@gmail.com     |               9 | Aurangabad | 2016-02-02  |
+|       21 | Dr. Ramesh Shinde  | Male   | General Physician | MBBS          | 9000000021    | ramesh.s@gmail.com    |              15 | Satara     | 2010-08-08  |
+|       22 | Dr. Kavita Patil   | Female | ENT Specialist    | MBBS, MS      | 9000000022    | kavita.p@gmail.com    |               6 | Solapur    | 2019-12-12  |
++----------+--------------------+--------+-------------------+---------------+---------------+-----------------------+-----------------+------------+-------------+
+22 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Doctor_Schedule (
+    ->     Schedule_id INT PRIMARY KEY ,
+    ->     Doctor_id INT,
+    ->     Available_date DATE,
+    ->     Start_time TIME,
+    ->     End_time TIME,
+    ->     Status VARCHAR(20),
+    ->     FOREIGN KEY (doctor_id) REFERENCES Doctors(DoctorID)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Doctor_Schedule
+    -> (schedule_id, doctor_id, available_date, start_time, end_time, status)
+    -> VALUES
+    -> (1,1,'2025-05-01','09:00:00','13:00:00','Available'),
+    -> (2,1,'2025-05-02','10:00:00','14:00:00','Booked'),
+    -> (3,2,'2025-05-01','11:00:00','15:00:00','Available'),
+    -> (4,2,'2025-05-03','09:00:00','12:00:00','Leave'),
+    -> (5,3,'2025-05-01','10:00:00','16:00:00','Available'),
+    -> (6,3,'2025-05-04','09:00:00','13:00:00','Booked'),
+    -> (7,4,'2025-05-02','08:00:00','12:00:00','Available'),
+    -> (8,4,'2025-05-05','10:00:00','14:00:00','Available'),
+    -> (9,5,'2025-05-01','12:00:00','18:00:00','Booked'),
+    -> (10,5,'2025-05-06','09:00:00','13:00:00','Available'),
+    ->
+    -> (11,6,'2025-05-02','10:00:00','14:00:00','Available'),
+    -> (12,6,'2025-05-03','11:00:00','15:00:00','Booked'),
+    -> (13,7,'2025-05-01','09:00:00','12:00:00','Available'),
+    -> (14,7,'2025-05-04','10:00:00','13:00:00','Available'),
+    -> (15,8,'2025-05-02','12:00:00','16:00:00','Leave'),
+    -> (16,8,'2025-05-05','09:00:00','13:00:00','Available'),
+    -> (17,9,'2025-05-01','08:00:00','11:00:00','Booked'),
+    -> (18,9,'2025-05-06','10:00:00','14:00:00','Available'),
+    -> (19,10,'2025-05-03','09:00:00','12:00:00','Available'),
+    -> (20,10,'2025-05-07','11:00:00','15:00:00','Booked'),
+    ->
+    -> (21,11,'2025-05-02','10:00:00','13:00:00','Available'),
+    -> (22,12,'2025-05-03','09:00:00','11:00:00','Available'),
+    -> (23,13,'2025-05-04','12:00:00','16:00:00','Booked'),
+    -> (24,14,'2025-05-05','10:00:00','14:00:00','Available'),
+    -> (25,15,'2025-05-06','09:00:00','13:00:00','Available');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc doctor_schedule;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Schedule_id    | int         | NO   | PRI | NULL    |       |
+| Doctor_id      | int         | YES  | MUL | NULL    |       |
+| Available_date | date        | YES  |     | NULL    |       |
+| Start_time     | time        | YES  |     | NULL    |       |
+| End_time       | time        | YES  |     | NULL    |       |
+| Status         | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> table doctor_schedule;
++-------------+-----------+----------------+------------+----------+-----------+
+| Schedule_id | Doctor_id | Available_date | Start_time | End_time | Status    |
++-------------+-----------+----------------+------------+----------+-----------+
+|           1 |         1 | 2025-05-01     | 09:00:00   | 13:00:00 | Available |
+|           2 |         1 | 2025-05-02     | 10:00:00   | 14:00:00 | Booked    |
+|           3 |         2 | 2025-05-01     | 11:00:00   | 15:00:00 | Available |
+|           4 |         2 | 2025-05-03     | 09:00:00   | 12:00:00 | Leave     |
+|           5 |         3 | 2025-05-01     | 10:00:00   | 16:00:00 | Available |
+|           6 |         3 | 2025-05-04     | 09:00:00   | 13:00:00 | Booked    |
+|           7 |         4 | 2025-05-02     | 08:00:00   | 12:00:00 | Available |
+|           8 |         4 | 2025-05-05     | 10:00:00   | 14:00:00 | Available |
+|           9 |         5 | 2025-05-01     | 12:00:00   | 18:00:00 | Booked    |
+|          10 |         5 | 2025-05-06     | 09:00:00   | 13:00:00 | Available |
+|          11 |         6 | 2025-05-02     | 10:00:00   | 14:00:00 | Available |
+|          12 |         6 | 2025-05-03     | 11:00:00   | 15:00:00 | Booked    |
+|          13 |         7 | 2025-05-01     | 09:00:00   | 12:00:00 | Available |
+|          14 |         7 | 2025-05-04     | 10:00:00   | 13:00:00 | Available |
+|          15 |         8 | 2025-05-02     | 12:00:00   | 16:00:00 | Leave     |
+|          16 |         8 | 2025-05-05     | 09:00:00   | 13:00:00 | Available |
+|          17 |         9 | 2025-05-01     | 08:00:00   | 11:00:00 | Booked    |
+|          18 |         9 | 2025-05-06     | 10:00:00   | 14:00:00 | Available |
+|          19 |        10 | 2025-05-03     | 09:00:00   | 12:00:00 | Available |
+|          20 |        10 | 2025-05-07     | 11:00:00   | 15:00:00 | Booked    |
+|          21 |        11 | 2025-05-02     | 10:00:00   | 13:00:00 | Available |
+|          22 |        12 | 2025-05-03     | 09:00:00   | 11:00:00 | Available |
+|          23 |        13 | 2025-05-04     | 12:00:00   | 16:00:00 | Booked    |
+|          24 |        14 | 2025-05-05     | 10:00:00   | 14:00:00 | Available |
+|          25 |        15 | 2025-05-06     | 09:00:00   | 13:00:00 | Available |
++-------------+-----------+----------------+------------+----------+-----------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Appointments (
+    ->     appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT NOT NULL,
+    ->     doctor_id INT NOT NULL,
+    ->     schedule_id INT NOT NULL,
+    ->     appointment_date DATE NOT NULL,
+    ->     appointment_time TIME NOT NULL,
+    ->     status ENUM('Booked','Completed','Cancelled') DEFAULT 'Booked',
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id),
+    ->     FOREIGN KEY (doctor_id) REFERENCES Doctors(DoctorID),
+    ->     FOREIGN KEY (schedule_id) REFERENCES Doctor_Schedule(schedule_id)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> INSERT INTO Appointments
+    -> (patient_id, doctor_id, schedule_id, appointment_date, appointment_time, status)
+    -> VALUES
+    -> (1,1,1,'2025-05-01','09:30:00','Booked'),
+    -> (2,2,3,'2025-05-01','11:30:00','Completed'),
+    -> (3,3,5,'2025-05-01','10:30:00','Booked'),
+    -> (4,4,7,'2025-05-02','09:00:00','Completed'),
+    -> (5,5,9,'2025-05-01','13:00:00','Cancelled'),
+    ->
+    -> (6,6,11,'2025-05-02','10:30:00','Booked'),
+    -> (7,7,13,'2025-05-01','09:30:00','Completed'),
+    -> (8,8,15,'2025-05-02','12:30:00','Cancelled'),
+    -> (9,9,17,'2025-05-01','08:30:00','Booked'),
+    -> (10,10,19,'2025-05-03','09:30:00','Completed'),
+    ->
+    -> (11,11,21,'2025-05-02','10:30:00','Booked'),
+    -> (12,12,22,'2025-05-03','09:30:00','Completed'),
+    -> (13,13,23,'2025-05-04','13:00:00','Booked'),
+    -> (14,14,24,'2025-05-05','11:00:00','Completed'),
+    -> (15,15,25,'2025-05-06','10:00:00','Booked'),
+    ->
+    -> (16,1,2,'2025-05-02','10:30:00','Cancelled'),
+    -> (17,2,4,'2025-05-03','09:30:00','Booked'),
+    -> (18,3,6,'2025-05-04','10:00:00','Completed'),
+    -> (19,4,8,'2025-05-05','12:00:00','Booked'),
+    -> (20,5,10,'2025-05-06','09:30:00','Completed'),
+    ->
+    -> (21,6,12,'2025-05-03','11:30:00','Booked'),
+    -> (22,7,14,'2025-05-04','10:30:00','Completed'),
+    -> (1,8,16,'2025-05-05','09:30:00','Booked'),
+    -> (2,9,18,'2025-05-06','11:00:00','Completed'),
+    -> (3,10,20,'2025-05-07','12:00:00','Booked');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc appointments;
++------------------+----------------------------------------+------+-----+---------+----------------+
+| Field            | Type                                   | Null | Key | Default | Extra          |
++------------------+----------------------------------------+------+-----+---------+----------------+
+| appointment_id   | int                                    | NO   | PRI | NULL    | auto_increment |
+| patient_id       | int                                    | NO   | MUL | NULL    |                |
+| doctor_id        | int                                    | NO   | MUL | NULL    |                |
+| schedule_id      | int                                    | NO   | MUL | NULL    |                |
+| appointment_date | date                                   | NO   |     | NULL    |                |
+| appointment_time | time                                   | NO   |     | NULL    |                |
+| status           | enum('Booked','Completed','Cancelled') | YES  |     | Booked  |                |
++------------------+----------------------------------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> table appointments;
++----------------+------------+-----------+-------------+------------------+------------------+-----------+
+| appointment_id | patient_id | doctor_id | schedule_id | appointment_date | appointment_time | status    |
++----------------+------------+-----------+-------------+------------------+------------------+-----------+
+|              1 |          1 |         1 |           1 | 2025-05-01       | 09:30:00         | Booked    |
+|              2 |          2 |         2 |           3 | 2025-05-01       | 11:30:00         | Completed |
+|              3 |          3 |         3 |           5 | 2025-05-01       | 10:30:00         | Booked    |
+|              4 |          4 |         4 |           7 | 2025-05-02       | 09:00:00         | Completed |
+|              5 |          5 |         5 |           9 | 2025-05-01       | 13:00:00         | Cancelled |
+|              6 |          6 |         6 |          11 | 2025-05-02       | 10:30:00         | Booked    |
+|              7 |          7 |         7 |          13 | 2025-05-01       | 09:30:00         | Completed |
+|              8 |          8 |         8 |          15 | 2025-05-02       | 12:30:00         | Cancelled |
+|              9 |          9 |         9 |          17 | 2025-05-01       | 08:30:00         | Booked    |
+|             10 |         10 |        10 |          19 | 2025-05-03       | 09:30:00         | Completed |
+|             11 |         11 |        11 |          21 | 2025-05-02       | 10:30:00         | Booked    |
+|             12 |         12 |        12 |          22 | 2025-05-03       | 09:30:00         | Completed |
+|             13 |         13 |        13 |          23 | 2025-05-04       | 13:00:00         | Booked    |
+|             14 |         14 |        14 |          24 | 2025-05-05       | 11:00:00         | Completed |
+|             15 |         15 |        15 |          25 | 2025-05-06       | 10:00:00         | Booked    |
+|             16 |         16 |         1 |           2 | 2025-05-02       | 10:30:00         | Cancelled |
+|             17 |         17 |         2 |           4 | 2025-05-03       | 09:30:00         | Booked    |
+|             18 |         18 |         3 |           6 | 2025-05-04       | 10:00:00         | Completed |
+|             19 |         19 |         4 |           8 | 2025-05-05       | 12:00:00         | Booked    |
+|             20 |         20 |         5 |          10 | 2025-05-06       | 09:30:00         | Completed |
+|             21 |         21 |         6 |          12 | 2025-05-03       | 11:30:00         | Booked    |
+|             22 |         22 |         7 |          14 | 2025-05-04       | 10:30:00         | Completed |
+|             23 |          1 |         8 |          16 | 2025-05-05       | 09:30:00         | Booked    |
+|             24 |          2 |         9 |          18 | 2025-05-06       | 11:00:00         | Completed |
+|             25 |          3 |        10 |          20 | 2025-05-07       | 12:00:00         | Booked    |
++----------------+------------+-----------+-------------+------------------+------------------+-----------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Allergies (
+    ->     allergy_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT NOT NULL,
+    ->     allergy_name VARCHAR(100) NOT NULL,
+    ->     severity ENUM('Mild','Moderate','Severe') DEFAULT 'Mild',
+    ->     notes VARCHAR(200),
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Allergies
+    -> (patient_id, allergy_name, severity, notes)
+    -> VALUES
+    -> (1,'Dust','Severe','Avoid dusty places'),
+    -> (2,'Pollen','Moderate','Seasonal allergy'),
+    -> (3,'Peanuts','Severe','Carry epinephrine'),
+    -> (4,'Milk','Mild','Avoid dairy products'),
+    -> (5,'Eggs','Moderate','Check food labels'),
+    ->
+    -> (6,'Dust','Mild','Use mask'),
+    -> (7,'Seafood','Severe','Strictly avoid'),
+    -> (8,'Pollen','Moderate','Use antihistamines'),
+    -> (9,'Medicine (Penicillin)','Severe','Inform doctor'),
+    -> (10,'Cold Weather','Mild','Wear warm clothes'),
+    ->
+    -> (11,'Dust','Moderate','Keep home clean'),
+    -> (12,'Perfume','Mild','Avoid strong fragrances'),
+    -> (13,'Peanuts','Severe','Emergency medication needed'),
+    -> (14,'Milk','Moderate','Use alternatives'),
+    -> (15,'Eggs','Mild','Limit intake'),
+    ->
+    -> (16,'Seafood','Severe','Avoid completely'),
+    -> (17,'Pollen','Moderate','Seasonal care'),
+    -> (18,'Dust','Mild','Use air purifier'),
+    -> (19,'Medicine (Aspirin)','Severe','Consult doctor'),
+    -> (20,'Cold Drinks','Mild','Avoid cold beverages'),
+    ->
+    -> (21,'Latex','Moderate','Avoid latex products'),
+    -> (22,'Insect Bites','Severe','Use repellents'),
+    -> (3,'Chocolate','Mild','Limit intake'),
+    -> (5,'Gluten','Moderate','Special diet'),
+    -> (7,'Smoke','Severe','Avoid polluted areas');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc allergies;
++--------------+----------------------------------+------+-----+---------+----------------+
+| Field        | Type                             | Null | Key | Default | Extra          |
++--------------+----------------------------------+------+-----+---------+----------------+
+| allergy_id   | int                              | NO   | PRI | NULL    | auto_increment |
+| patient_id   | int                              | NO   | MUL | NULL    |                |
+| allergy_name | varchar(100)                     | NO   |     | NULL    |                |
+| severity     | enum('Mild','Moderate','Severe') | YES  |     | Mild    |                |
+| notes        | varchar(200)                     | YES  |     | NULL    |                |
++--------------+----------------------------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> table allergies;
++------------+------------+-----------------------+----------+-----------------------------+
+| allergy_id | patient_id | allergy_name          | severity | notes                       |
++------------+------------+-----------------------+----------+-----------------------------+
+|          1 |          1 | Dust                  | Severe   | Avoid dusty places          |
+|          2 |          2 | Pollen                | Moderate | Seasonal allergy            |
+|          3 |          3 | Peanuts               | Severe   | Carry epinephrine           |
+|          4 |          4 | Milk                  | Mild     | Avoid dairy products        |
+|          5 |          5 | Eggs                  | Moderate | Check food labels           |
+|          6 |          6 | Dust                  | Mild     | Use mask                    |
+|          7 |          7 | Seafood               | Severe   | Strictly avoid              |
+|          8 |          8 | Pollen                | Moderate | Use antihistamines          |
+|          9 |          9 | Medicine (Penicillin) | Severe   | Inform doctor               |
+|         10 |         10 | Cold Weather          | Mild     | Wear warm clothes           |
+|         11 |         11 | Dust                  | Moderate | Keep home clean             |
+|         12 |         12 | Perfume               | Mild     | Avoid strong fragrances     |
+|         13 |         13 | Peanuts               | Severe   | Emergency medication needed |
+|         14 |         14 | Milk                  | Moderate | Use alternatives            |
+|         15 |         15 | Eggs                  | Mild     | Limit intake                |
+|         16 |         16 | Seafood               | Severe   | Avoid completely            |
+|         17 |         17 | Pollen                | Moderate | Seasonal care               |
+|         18 |         18 | Dust                  | Mild     | Use air purifier            |
+|         19 |         19 | Medicine (Aspirin)    | Severe   | Consult doctor              |
+|         20 |         20 | Cold Drinks           | Mild     | Avoid cold beverages        |
+|         21 |         21 | Latex                 | Moderate | Avoid latex products        |
+|         22 |         22 | Insect Bites          | Severe   | Use repellents              |
+|         23 |          3 | Chocolate             | Mild     | Limit intake                |
+|         24 |          5 | Gluten                | Moderate | Special diet                |
+|         25 |          7 | Smoke                 | Severe   | Avoid polluted areas        |
++------------+------------+-----------------------+----------+-----------------------------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Hospitalization (
+    ->     hospitalization_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     admission_date DATE,
+    ->     discharge_date DATE,
+    ->     room_number VARCHAR(10),
+    ->     reason VARCHAR(100),
+    ->     status VARCHAR(20),  -- Admitted / Discharged
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id),
+    ->     FOREIGN KEY (doctor_id) REFERENCES Doctors(DoctorID)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO Hospitalization
+    -> (patient_id, doctor_id, admission_date, discharge_date, room_number, reason, status)
+    -> VALUES
+    -> (1,5,'2025-05-01','2025-05-05','101','Fever','Discharged'),
+    -> (2,6,'2025-05-02','2025-05-06','102','Skin Infection','Discharged'),
+    -> (3,7,'2025-05-03','2025-05-10','103','Fracture','Discharged'),
+    -> (4,8,'2025-05-04','2025-05-07','104','Pregnancy','Discharged'),
+    -> (5,9,'2025-05-05','2025-05-12','105','Brain Issue','Discharged'),
+    ->
+    -> (6,10,'2025-05-06','2025-05-08','106','Child Fever','Discharged'),
+    -> (7,11,'2025-05-07',NULL,'107','General Checkup','Admitted'),
+    -> (8,12,'2025-05-08','2025-05-11','108','Ear Problem','Discharged'),
+    -> (9,13,'2025-05-09','2025-05-13','109','X-Ray Observation','Discharged'),
+    -> (10,14,'2025-05-10',NULL,'110','Mental Stress','Admitted'),
+    ->
+    -> (11,15,'2025-05-11','2025-05-15','111','Cancer Treatment','Discharged'),
+    -> (12,16,'2025-05-12','2025-05-14','112','Dental Surgery','Discharged'),
+    -> (13,17,'2025-05-13','2025-05-18','113','Kidney Issue','Discharged'),
+    -> (14,18,'2025-05-14','2025-05-16','114','Eye Surgery','Discharged'),
+    -> (15,19,'2025-05-15',NULL,'115','Heart Problem','Admitted'),
+    ->
+    -> (16,20,'2025-05-16','2025-05-20','116','Skin Allergy','Discharged'),
+    -> (17,21,'2025-05-17','2025-05-21','117','Bone Injury','Discharged'),
+    -> (18,22,'2025-05-18','2025-05-22','118','Delivery Case','Discharged'),
+    -> (19,1,'2025-05-19',NULL,'119','Neurology Issue','Admitted'),
+    -> (20,2,'2025-05-20','2025-05-25','120','Child Care','Discharged'),
+    ->
+    -> (21,3,'2025-05-21','2025-05-24','121','Fever','Discharged'),
+    -> (22,4,'2025-05-22','2025-05-26','122','ENT Problem','Discharged'),
+    -> (3,6,'2025-05-23',NULL,'123','Re-check Fracture','Admitted'),
+    -> (5,7,'2025-05-24','2025-05-28','124','Brain Surgery','Discharged'),
+    -> (8,9,'2025-05-25',NULL,'125','Follow-up','Admitted');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc hospitalization;
++--------------------+--------------+------+-----+---------+----------------+
+| Field              | Type         | Null | Key | Default | Extra          |
++--------------------+--------------+------+-----+---------+----------------+
+| hospitalization_id | int          | NO   | PRI | NULL    | auto_increment |
+| patient_id         | int          | YES  | MUL | NULL    |                |
+| doctor_id          | int          | YES  | MUL | NULL    |                |
+| admission_date     | date         | YES  |     | NULL    |                |
+| discharge_date     | date         | YES  |     | NULL    |                |
+| room_number        | varchar(10)  | YES  |     | NULL    |                |
+| reason             | varchar(100) | YES  |     | NULL    |                |
+| status             | varchar(20)  | YES  |     | NULL    |                |
++--------------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> table hospitalization;
++--------------------+------------+-----------+----------------+----------------+-------------+-------------------+------------+
+| hospitalization_id | patient_id | doctor_id | admission_date | discharge_date | room_number | reason            | status     |
++--------------------+------------+-----------+----------------+----------------+-------------+-------------------+------------+
+|                  1 |          1 |         5 | 2025-05-01     | 2025-05-05     | 101         | Fever             | Discharged |
+|                  2 |          2 |         6 | 2025-05-02     | 2025-05-06     | 102         | Skin Infection    | Discharged |
+|                  3 |          3 |         7 | 2025-05-03     | 2025-05-10     | 103         | Fracture          | Discharged |
+|                  4 |          4 |         8 | 2025-05-04     | 2025-05-07     | 104         | Pregnancy         | Discharged |
+|                  5 |          5 |         9 | 2025-05-05     | 2025-05-12     | 105         | Brain Issue       | Discharged |
+|                  6 |          6 |        10 | 2025-05-06     | 2025-05-08     | 106         | Child Fever       | Discharged |
+|                  7 |          7 |        11 | 2025-05-07     | NULL           | 107         | General Checkup   | Admitted   |
+|                  8 |          8 |        12 | 2025-05-08     | 2025-05-11     | 108         | Ear Problem       | Discharged |
+|                  9 |          9 |        13 | 2025-05-09     | 2025-05-13     | 109         | X-Ray Observation | Discharged |
+|                 10 |         10 |        14 | 2025-05-10     | NULL           | 110         | Mental Stress     | Admitted   |
+|                 11 |         11 |        15 | 2025-05-11     | 2025-05-15     | 111         | Cancer Treatment  | Discharged |
+|                 12 |         12 |        16 | 2025-05-12     | 2025-05-14     | 112         | Dental Surgery    | Discharged |
+|                 13 |         13 |        17 | 2025-05-13     | 2025-05-18     | 113         | Kidney Issue      | Discharged |
+|                 14 |         14 |        18 | 2025-05-14     | 2025-05-16     | 114         | Eye Surgery       | Discharged |
+|                 15 |         15 |        19 | 2025-05-15     | NULL           | 115         | Heart Problem     | Admitted   |
+|                 16 |         16 |        20 | 2025-05-16     | 2025-05-20     | 116         | Skin Allergy      | Discharged |
+|                 17 |         17 |        21 | 2025-05-17     | 2025-05-21     | 117         | Bone Injury       | Discharged |
+|                 18 |         18 |        22 | 2025-05-18     | 2025-05-22     | 118         | Delivery Case     | Discharged |
+|                 19 |         19 |         1 | 2025-05-19     | NULL           | 119         | Neurology Issue   | Admitted   |
+|                 20 |         20 |         2 | 2025-05-20     | 2025-05-25     | 120         | Child Care        | Discharged |
+|                 21 |         21 |         3 | 2025-05-21     | 2025-05-24     | 121         | Fever             | Discharged |
+|                 22 |         22 |         4 | 2025-05-22     | 2025-05-26     | 122         | ENT Problem       | Discharged |
+|                 23 |          3 |         6 | 2025-05-23     | NULL           | 123         | Re-check Fracture | Admitted   |
+|                 24 |          5 |         7 | 2025-05-24     | 2025-05-28     | 124         | Brain Surgery     | Discharged |
+|                 25 |          8 |         9 | 2025-05-25     | NULL           | 125         | Follow-up         | Admitted   |
++--------------------+------------+-----------+----------------+----------------+-------------+-------------------+------------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Insurance (
+    ->     insurance_id INT PRIMARY KEY,
+    ->     provider_name VARCHAR(100),
+    ->     policy_number VARCHAR(50) UNIQUE,
+    ->     coverage_amount DECIMAL(10,2),
+    ->     start_date DATE,
+    ->     end_date DATE
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Insurance
+    -> (insurance_id, provider_name, policy_number, coverage_amount, start_date, end_date)
+    -> VALUES
+    -> (101,'LIC Health','LIC1001',200000,'2024-01-01','2026-01-01'),
+    -> (102,'Star Health','STAR1002',300000,'2023-06-01','2025-06-01'),
+    -> (103,'HDFC Ergo','HDFC1003',250000,'2024-03-15','2026-03-15'),
+    -> (104,'ICICI Lombard','ICICI1004',400000,'2023-08-10','2025-08-10'),
+    -> (105,'Bajaj Allianz','BAJAJ1005',350000,'2024-02-20','2026-02-20'),
+    ->
+    -> (106,'Religare','REL1006',150000,'2023-05-01','2025-05-01'),
+    -> (107,'Max Bupa','MAX1007',500000,'2024-07-01','2026-07-01'),
+    -> (108,'Care Health','CARE1008',300000,'2023-09-12','2025-09-12'),
+    -> (109,'Tata AIG','TATA1009',450000,'2024-04-01','2026-04-01'),
+    -> (110,'Aditya Birla','ADITYA1010',250000,'2023-11-11','2025-11-11'),
+    ->
+    -> (111,'Future Generali','FG1011',200000,'2024-01-20','2026-01-20'),
+    -> (112,'Universal Sompo','US1012',180000,'2023-07-07','2025-07-07'),
+    -> (113,'Liberty Health','LIB1013',220000,'2024-06-15','2026-06-15'),
+    -> (114,'IFFCO Tokio','IFFCO1014',270000,'2023-10-10','2025-10-10'),
+    -> (115,'Cholamandalam','CHO1015',320000,'2024-02-02','2026-02-02'),
+    ->
+    -> (116,'Kotak Health','KOTAK1016',290000,'2023-12-01','2025-12-01'),
+    -> (117,'Manipal Cigna','MC1017',310000,'2024-03-03','2026-03-03'),
+    -> (118,'Niva Bupa','NB1018',330000,'2023-08-18','2025-08-18'),
+    -> (119,'Royal Sundaram','RS1019',260000,'2024-05-05','2026-05-05'),
+    -> (120,'SBI Health','SBI1020',280000,'2023-09-25','2025-09-25'),
+    ->
+    -> (121,'Digit Health','DIG1021',240000,'2024-01-10','2026-01-10'),
+    -> (122,'Acko Health','ACKO1022',350000,'2023-06-30','2025-06-30');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> desc insurance;
++-----------------+---------------+------+-----+---------+-------+
+| Field           | Type          | Null | Key | Default | Extra |
++-----------------+---------------+------+-----+---------+-------+
+| insurance_id    | int           | NO   | PRI | NULL    |       |
+| provider_name   | varchar(100)  | YES  |     | NULL    |       |
+| policy_number   | varchar(50)   | YES  | UNI | NULL    |       |
+| coverage_amount | decimal(10,2) | YES  |     | NULL    |       |
+| start_date      | date          | YES  |     | NULL    |       |
+| end_date        | date          | YES  |     | NULL    |       |
++-----------------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> table insurance;
++--------------+-----------------+---------------+-----------------+------------+------------+
+| insurance_id | provider_name   | policy_number | coverage_amount | start_date | end_date   |
++--------------+-----------------+---------------+-----------------+------------+------------+
+|          101 | LIC Health      | LIC1001       |       200000.00 | 2024-01-01 | 2026-01-01 |
+|          102 | Star Health     | STAR1002      |       300000.00 | 2023-06-01 | 2025-06-01 |
+|          103 | HDFC Ergo       | HDFC1003      |       250000.00 | 2024-03-15 | 2026-03-15 |
+|          104 | ICICI Lombard   | ICICI1004     |       400000.00 | 2023-08-10 | 2025-08-10 |
+|          105 | Bajaj Allianz   | BAJAJ1005     |       350000.00 | 2024-02-20 | 2026-02-20 |
+|          106 | Religare        | REL1006       |       150000.00 | 2023-05-01 | 2025-05-01 |
+|          107 | Max Bupa        | MAX1007       |       500000.00 | 2024-07-01 | 2026-07-01 |
+|          108 | Care Health     | CARE1008      |       300000.00 | 2023-09-12 | 2025-09-12 |
+|          109 | Tata AIG        | TATA1009      |       450000.00 | 2024-04-01 | 2026-04-01 |
+|          110 | Aditya Birla    | ADITYA1010    |       250000.00 | 2023-11-11 | 2025-11-11 |
+|          111 | Future Generali | FG1011        |       200000.00 | 2024-01-20 | 2026-01-20 |
+|          112 | Universal Sompo | US1012        |       180000.00 | 2023-07-07 | 2025-07-07 |
+|          113 | Liberty Health  | LIB1013       |       220000.00 | 2024-06-15 | 2026-06-15 |
+|          114 | IFFCO Tokio     | IFFCO1014     |       270000.00 | 2023-10-10 | 2025-10-10 |
+|          115 | Cholamandalam   | CHO1015       |       320000.00 | 2024-02-02 | 2026-02-02 |
+|          116 | Kotak Health    | KOTAK1016     |       290000.00 | 2023-12-01 | 2025-12-01 |
+|          117 | Manipal Cigna   | MC1017        |       310000.00 | 2024-03-03 | 2026-03-03 |
+|          118 | Niva Bupa       | NB1018        |       330000.00 | 2023-08-18 | 2025-08-18 |
+|          119 | Royal Sundaram  | RS1019        |       260000.00 | 2024-05-05 | 2026-05-05 |
+|          120 | SBI Health      | SBI1020       |       280000.00 | 2023-09-25 | 2025-09-25 |
+|          121 | Digit Health    | DIG1021       |       240000.00 | 2024-01-10 | 2026-01-10 |
+|          122 | Acko Health     | ACKO1022      |       350000.00 | 2023-06-30 | 2025-06-30 |
++--------------+-----------------+---------------+-----------------+------------+------------+
+22 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Medication (
+    ->     medication_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     medication_name VARCHAR(100),
+    ->     manufacturer VARCHAR(100),
+    ->     price DECIMAL(10,2),
+    ->     expiry_date DATE
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Medication
+    -> (medication_name, manufacturer, price, expiry_date)
+    -> VALUES
+    -> ('Paracetamol','Cipla',20.50,'2026-01-01'),
+    -> ('Ibuprofen','Sun Pharma',35.00,'2025-12-15'),
+    -> ('Amoxicillin','Dr. Reddy''s',50.75,'2026-03-10'),
+    -> ('Metformin','Lupin',45.20,'2026-06-20'),
+    -> ('Aspirin','Bayer',25.00,'2025-11-11'),
+    ->
+    -> ('Azithromycin','Cipla',60.00,'2026-04-05'),
+    -> ('Cetirizine','Sun Pharma',15.50,'2025-10-10'),
+    -> ('Omeprazole','Dr. Reddy''s',40.00,'2026-02-02'),
+    -> ('Pantoprazole','Lupin',55.00,'2026-05-15'),
+    -> ('Dolo 650','Micro Labs',30.00,'2025-09-09'),
+    ->
+    -> ('Crocin','GSK',28.00,'2026-07-07'),
+    -> ('Disprin','Reckitt',22.00,'2025-08-08'),
+    -> ('Insulin','Novo Nordisk',500.00,'2026-12-01'),
+    -> ('Atorvastatin','Sun Pharma',70.00,'2026-03-25'),
+    -> ('Losartan','Cipla',65.00,'2026-01-30'),
+    ->
+    -> ('Salbutamol','GSK',90.00,'2025-12-31'),
+    -> ('Montelukast','Lupin',85.00,'2026-06-06'),
+    -> ('Levothyroxine','Abbott',75.00,'2026-04-14'),
+    -> ('Clopidogrel','Sun Pharma',95.00,'2026-02-18'),
+    -> ('Hydroxychloroquine','Ipca',110.00,'2026-05-05'),
+    ->
+    -> ('Ranitidine','Zydus',40.00,'2025-11-20'),
+    -> ('Domperidone','Cipla',35.00,'2026-03-03');
+Query OK, 22 rows affected (0.02 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> desc medication;
++-----------------+---------------+------+-----+---------+----------------+
+| Field           | Type          | Null | Key | Default | Extra          |
++-----------------+---------------+------+-----+---------+----------------+
+| medication_id   | int           | NO   | PRI | NULL    | auto_increment |
+| medication_name | varchar(100)  | YES  |     | NULL    |                |
+| manufacturer    | varchar(100)  | YES  |     | NULL    |                |
+| price           | decimal(10,2) | YES  |     | NULL    |                |
+| expiry_date     | date          | YES  |     | NULL    |                |
++-----------------+---------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> table medication;
++---------------+--------------------+--------------+--------+-------------+
+| medication_id | medication_name    | manufacturer | price  | expiry_date |
++---------------+--------------------+--------------+--------+-------------+
+|             1 | Paracetamol        | Cipla        |  20.50 | 2026-01-01  |
+|             2 | Ibuprofen          | Sun Pharma   |  35.00 | 2025-12-15  |
+|             3 | Amoxicillin        | Dr. Reddy's  |  50.75 | 2026-03-10  |
+|             4 | Metformin          | Lupin        |  45.20 | 2026-06-20  |
+|             5 | Aspirin            | Bayer        |  25.00 | 2025-11-11  |
+|             6 | Azithromycin       | Cipla        |  60.00 | 2026-04-05  |
+|             7 | Cetirizine         | Sun Pharma   |  15.50 | 2025-10-10  |
+|             8 | Omeprazole         | Dr. Reddy's  |  40.00 | 2026-02-02  |
+|             9 | Pantoprazole       | Lupin        |  55.00 | 2026-05-15  |
+|            10 | Dolo 650           | Micro Labs   |  30.00 | 2025-09-09  |
+|            11 | Crocin             | GSK          |  28.00 | 2026-07-07  |
+|            12 | Disprin            | Reckitt      |  22.00 | 2025-08-08  |
+|            13 | Insulin            | Novo Nordisk | 500.00 | 2026-12-01  |
+|            14 | Atorvastatin       | Sun Pharma   |  70.00 | 2026-03-25  |
+|            15 | Losartan           | Cipla        |  65.00 | 2026-01-30  |
+|            16 | Salbutamol         | GSK          |  90.00 | 2025-12-31  |
+|            17 | Montelukast        | Lupin        |  85.00 | 2026-06-06  |
+|            18 | Levothyroxine      | Abbott       |  75.00 | 2026-04-14  |
+|            19 | Clopidogrel        | Sun Pharma   |  95.00 | 2026-02-18  |
+|            20 | Hydroxychloroquine | Ipca         | 110.00 | 2026-05-05  |
+|            21 | Ranitidine         | Zydus        |  40.00 | 2025-11-20  |
+|            22 | Domperidone        | Cipla        |  35.00 | 2026-03-03  |
++---------------+--------------------+--------------+--------+-------------+
+22 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Surgeries (
+    ->     surgery_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     surgery_name VARCHAR(100),
+    ->     surgery_date DATE,
+    ->     surgery_type VARCHAR(50),   -- Minor / Major
+    ->     cost DECIMAL(10,2),
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id),
+    ->     FOREIGN KEY (doctor_id) REFERENCES Doctors(DoctorID)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO Surgeries
+    -> (patient_id, doctor_id, surgery_name, surgery_date, surgery_type, cost)
+    -> VALUES
+    -> (1,5,'Appendix Surgery','2025-05-01','Minor',50000),
+    -> (2,6,'Skin Grafting','2025-05-02','Minor',45000),
+    -> (3,7,'Fracture Surgery','2025-05-03','Major',120000),
+    -> (4,8,'C-Section','2025-05-04','Major',150000),
+    -> (5,9,'Brain Surgery','2025-05-05','Major',300000),
+    ->
+    -> (6,10,'Tonsil Surgery','2025-05-06','Minor',40000),
+    -> (7,11,'General Surgery','2025-05-07','Minor',35000),
+    -> (8,12,'Ear Surgery','2025-05-08','Minor',30000),
+    -> (9,13,'Spine Surgery','2025-05-09','Major',200000),
+    -> (10,14,'Psychiatric Procedure','2025-05-10','Minor',25000),
+    ->
+    -> (11,15,'Cancer Surgery','2025-05-11','Major',350000),
+    -> (12,16,'Dental Surgery','2025-05-12','Minor',20000),
+    -> (13,17,'Kidney Stone Removal','2025-05-13','Major',180000),
+    -> (14,18,'Eye Surgery','2025-05-14','Minor',60000),
+    -> (15,19,'Heart Bypass','2025-05-15','Major',400000),
+    ->
+    -> (16,20,'Allergy Treatment Procedure','2025-05-16','Minor',30000),
+    -> (17,21,'Bone Fixation','2025-05-17','Major',140000),
+    -> (18,22,'Delivery Operation','2025-05-18','Major',130000),
+    -> (19,1,'Brain Tumor Surgery','2025-05-19','Major',320000),
+    -> (20,2,'Child Surgery','2025-05-20','Minor',50000),
+    ->
+    -> (21,3,'Fever Related Procedure','2025-05-21','Minor',20000),
+    -> (22,4,'ENT Surgery','2025-05-22','Minor',45000),
+    -> (3,6,'Re-Fracture Surgery','2025-05-23','Major',125000),
+    -> (5,7,'Neuro Surgery','2025-05-24','Major',310000),
+    -> (8,9,'Follow-up Procedure','2025-05-25','Minor',15000);
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc surgeries;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| surgery_id   | int           | NO   | PRI | NULL    | auto_increment |
+| patient_id   | int           | YES  | MUL | NULL    |                |
+| doctor_id    | int           | YES  | MUL | NULL    |                |
+| surgery_name | varchar(100)  | YES  |     | NULL    |                |
+| surgery_date | date          | YES  |     | NULL    |                |
+| surgery_type | varchar(50)   | YES  |     | NULL    |                |
+| cost         | decimal(10,2) | YES  |     | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> table surgeries;
++------------+------------+-----------+-----------------------------+--------------+--------------+-----------+
+| surgery_id | patient_id | doctor_id | surgery_name                | surgery_date | surgery_type | cost      |
++------------+------------+-----------+-----------------------------+--------------+--------------+-----------+
+|          1 |          1 |         5 | Appendix Surgery            | 2025-05-01   | Minor        |  50000.00 |
+|          2 |          2 |         6 | Skin Grafting               | 2025-05-02   | Minor        |  45000.00 |
+|          3 |          3 |         7 | Fracture Surgery            | 2025-05-03   | Major        | 120000.00 |
+|          4 |          4 |         8 | C-Section                   | 2025-05-04   | Major        | 150000.00 |
+|          5 |          5 |         9 | Brain Surgery               | 2025-05-05   | Major        | 300000.00 |
+|          6 |          6 |        10 | Tonsil Surgery              | 2025-05-06   | Minor        |  40000.00 |
+|          7 |          7 |        11 | General Surgery             | 2025-05-07   | Minor        |  35000.00 |
+|          8 |          8 |        12 | Ear Surgery                 | 2025-05-08   | Minor        |  30000.00 |
+|          9 |          9 |        13 | Spine Surgery               | 2025-05-09   | Major        | 200000.00 |
+|         10 |         10 |        14 | Psychiatric Procedure       | 2025-05-10   | Minor        |  25000.00 |
+|         11 |         11 |        15 | Cancer Surgery              | 2025-05-11   | Major        | 350000.00 |
+|         12 |         12 |        16 | Dental Surgery              | 2025-05-12   | Minor        |  20000.00 |
+|         13 |         13 |        17 | Kidney Stone Removal        | 2025-05-13   | Major        | 180000.00 |
+|         14 |         14 |        18 | Eye Surgery                 | 2025-05-14   | Minor        |  60000.00 |
+|         15 |         15 |        19 | Heart Bypass                | 2025-05-15   | Major        | 400000.00 |
+|         16 |         16 |        20 | Allergy Treatment Procedure | 2025-05-16   | Minor        |  30000.00 |
+|         17 |         17 |        21 | Bone Fixation               | 2025-05-17   | Major        | 140000.00 |
+|         18 |         18 |        22 | Delivery Operation          | 2025-05-18   | Major        | 130000.00 |
+|         19 |         19 |         1 | Brain Tumor Surgery         | 2025-05-19   | Major        | 320000.00 |
+|         20 |         20 |         2 | Child Surgery               | 2025-05-20   | Minor        |  50000.00 |
+|         21 |         21 |         3 | Fever Related Procedure     | 2025-05-21   | Minor        |  20000.00 |
+|         22 |         22 |         4 | ENT Surgery                 | 2025-05-22   | Minor        |  45000.00 |
+|         23 |          3 |         6 | Re-Fracture Surgery         | 2025-05-23   | Major        | 125000.00 |
+|         24 |          5 |         7 | Neuro Surgery               | 2025-05-24   | Major        | 310000.00 |
+|         25 |          8 |         9 | Follow-up Procedure         | 2025-05-25   | Minor        |  15000.00 |
++------------+------------+-----------+-----------------------------+--------------+--------------+-----------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Vaccinations (
+    ->     vaccination_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT,
+    ->     vaccine_name VARCHAR(100),
+    ->     dose_number INT,
+    ->     vaccination_date DATE,
+    ->     next_due_date DATE,
+    ->     administered_by VARCHAR(100),
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO Vaccinations
+    -> (patient_id, vaccine_name, dose_number, vaccination_date, next_due_date, administered_by)
+    -> VALUES
+    -> (1,'COVID-19',1,'2024-01-10','2024-02-10','Dr. Sharma'),
+    -> (2,'COVID-19',2,'2024-02-15',NULL,'Dr. Patil'),
+    -> (3,'Hepatitis B',1,'2024-03-01','2024-04-01','Dr. Khan'),
+    -> (4,'Polio',1,'2024-03-05',NULL,'Dr. Mehta'),
+    -> (5,'Tetanus',1,'2024-03-10','2025-03-10','Dr. Singh'),
+    ->
+    -> (6,'COVID-19',1,'2024-01-20','2024-02-20','Dr. Joshi'),
+    -> (7,'Hepatitis B',2,'2024-02-25',NULL,'Dr. Mehta'),
+    -> (8,'Polio',2,'2024-03-12',NULL,'Dr. Shah'),
+    -> (9,'Tetanus',1,'2024-03-15','2025-03-15','Dr. Yadav'),
+    -> (10,'COVID-19',2,'2024-02-28',NULL,'Dr. Deshmukh'),
+    ->
+    -> (11,'MMR',1,'2024-03-18','2024-04-18','Dr. Pawar'),
+    -> (12,'MMR',2,'2024-04-20',NULL,'Dr. Shah'),
+    -> (13,'Hepatitis A',1,'2024-03-22','2024-04-22','Dr. More'),
+    -> (14,'Influenza',1,'2024-03-25','2025-03-25','Dr. Jadhav'),
+    -> (15,'Rabies',1,'2024-03-28','2024-04-28','Dr. Patil'),
+    ->
+    -> (16,'COVID-19 Booster',3,'2024-04-01',NULL,'Dr. Kale'),
+    -> (17,'Tetanus',2,'2024-04-03','2025-04-03','Dr. Gupta'),
+    -> (18,'Polio Booster',3,'2024-04-05',NULL,'Dr. Singh'),
+    -> (19,'Hepatitis B',3,'2024-04-07',NULL,'Dr. Yadav'),
+    -> (20,'Influenza',1,'2024-04-10','2025-04-10','Dr. Joshi'),
+    ->
+    -> (21,'COVID-19',1,'2024-04-12','2024-05-12','Dr. Shinde'),
+    -> (22,'MMR',1,'2024-04-15','2024-05-15','Dr. Patil'),
+    -> (3,'Rabies',2,'2024-04-18',NULL,'Dr. Khan'),
+    -> (5,'Influenza',2,'2024-04-20','2025-04-20','Dr. Singh'),
+    -> (8,'COVID-19 Booster',3,'2024-04-22',NULL,'Dr. Shah');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc vaccinations;
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| vaccination_id   | int          | NO   | PRI | NULL    | auto_increment |
+| patient_id       | int          | YES  | MUL | NULL    |                |
+| vaccine_name     | varchar(100) | YES  |     | NULL    |                |
+| dose_number      | int          | YES  |     | NULL    |                |
+| vaccination_date | date         | YES  |     | NULL    |                |
+| next_due_date    | date         | YES  |     | NULL    |                |
+| administered_by  | varchar(100) | YES  |     | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> table vaccinations;
++----------------+------------+------------------+-------------+------------------+---------------+-----------------+
+| vaccination_id | patient_id | vaccine_name     | dose_number | vaccination_date | next_due_date | administered_by |
++----------------+------------+------------------+-------------+------------------+---------------+-----------------+
+|              1 |          1 | COVID-19         |           1 | 2024-01-10       | 2024-02-10    | Dr. Sharma      |
+|              2 |          2 | COVID-19         |           2 | 2024-02-15       | NULL          | Dr. Patil       |
+|              3 |          3 | Hepatitis B      |           1 | 2024-03-01       | 2024-04-01    | Dr. Khan        |
+|              4 |          4 | Polio            |           1 | 2024-03-05       | NULL          | Dr. Mehta       |
+|              5 |          5 | Tetanus          |           1 | 2024-03-10       | 2025-03-10    | Dr. Singh       |
+|              6 |          6 | COVID-19         |           1 | 2024-01-20       | 2024-02-20    | Dr. Joshi       |
+|              7 |          7 | Hepatitis B      |           2 | 2024-02-25       | NULL          | Dr. Mehta       |
+|              8 |          8 | Polio            |           2 | 2024-03-12       | NULL          | Dr. Shah        |
+|              9 |          9 | Tetanus          |           1 | 2024-03-15       | 2025-03-15    | Dr. Yadav       |
+|             10 |         10 | COVID-19         |           2 | 2024-02-28       | NULL          | Dr. Deshmukh    |
+|             11 |         11 | MMR              |           1 | 2024-03-18       | 2024-04-18    | Dr. Pawar       |
+|             12 |         12 | MMR              |           2 | 2024-04-20       | NULL          | Dr. Shah        |
+|             13 |         13 | Hepatitis A      |           1 | 2024-03-22       | 2024-04-22    | Dr. More        |
+|             14 |         14 | Influenza        |           1 | 2024-03-25       | 2025-03-25    | Dr. Jadhav      |
+|             15 |         15 | Rabies           |           1 | 2024-03-28       | 2024-04-28    | Dr. Patil       |
+|             16 |         16 | COVID-19 Booster |           3 | 2024-04-01       | NULL          | Dr. Kale        |
+|             17 |         17 | Tetanus          |           2 | 2024-04-03       | 2025-04-03    | Dr. Gupta       |
+|             18 |         18 | Polio Booster    |           3 | 2024-04-05       | NULL          | Dr. Singh       |
+|             19 |         19 | Hepatitis B      |           3 | 2024-04-07       | NULL          | Dr. Yadav       |
+|             20 |         20 | Influenza        |           1 | 2024-04-10       | 2025-04-10    | Dr. Joshi       |
+|             21 |         21 | COVID-19         |           1 | 2024-04-12       | 2024-05-12    | Dr. Shinde      |
+|             22 |         22 | MMR              |           1 | 2024-04-15       | 2024-05-15    | Dr. Patil       |
+|             23 |          3 | Rabies           |           2 | 2024-04-18       | NULL          | Dr. Khan        |
+|             24 |          5 | Influenza        |           2 | 2024-04-20       | 2025-04-20    | Dr. Singh       |
+|             25 |          8 | COVID-19 Booster |           3 | 2024-04-22       | NULL          | Dr. Shah        |
++----------------+------------+------------------+-------------+------------------+---------------+-----------------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Prescriptions (
+    ->     prescription_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     medication_id INT,
+    ->     prescription_date DATE,
+    ->     dosage VARCHAR(50),
+    ->     duration VARCHAR(50),   -- e.g., 5 days, 1 week
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id),
+    ->     FOREIGN KEY (doctor_id) REFERENCES Doctors(DoctorID),
+    ->     FOREIGN KEY (medication_id) REFERENCES Medication(medication_id)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO Prescriptions
+    -> (patient_id, doctor_id, medication_id, prescription_date, dosage, duration)
+    -> VALUES
+    -> (1,5,1,'2025-05-01','500mg','5 days'),
+    -> (2,6,2,'2025-05-02','200mg','3 days'),
+    -> (3,7,3,'2025-05-03','250mg','7 days'),
+    -> (4,8,4,'2025-05-04','850mg','10 days'),
+    -> (5,9,5,'2025-05-05','100mg','5 days'),
+    ->
+    -> (6,10,6,'2025-05-06','500mg','5 days'),
+    -> (7,11,7,'2025-05-07','10mg','3 days'),
+    -> (8,12,8,'2025-05-08','20mg','7 days'),
+    -> (9,13,9,'2025-05-09','40mg','10 days'),
+    -> (10,14,10,'2025-05-10','650mg','5 days'),
+    ->
+    -> (11,15,11,'2025-05-11','500mg','5 days'),
+    -> (12,16,12,'2025-05-12','300mg','3 days'),
+    -> (13,17,13,'2025-05-13','10 units','15 days'),
+    -> (14,18,14,'2025-05-14','20mg','30 days'),
+    -> (15,19,15,'2025-05-15','50mg','10 days'),
+    ->
+    -> (16,20,16,'2025-05-16','2 puffs','7 days'),
+    -> (17,21,17,'2025-05-17','10mg','5 days'),
+    -> (18,22,18,'2025-05-18','50mcg','30 days'),
+    -> (19,1,19,'2025-05-19','75mg','10 days'),
+    -> (20,2,20,'2025-05-20','200mg','7 days'),
+    ->
+    -> (21,3,21,'2025-05-21','150mg','5 days'),
+    -> (22,4,22,'2025-05-22','10mg','3 days'),
+    -> (3,6,1,'2025-05-23','500mg','5 days'),
+    -> (5,7,2,'2025-05-24','200mg','4 days'),
+    -> (8,9,3,'2025-05-25','250mg','6 days');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc prescriptions;
++-------------------+-------------+------+-----+---------+----------------+
+| Field             | Type        | Null | Key | Default | Extra          |
++-------------------+-------------+------+-----+---------+----------------+
+| prescription_id   | int         | NO   | PRI | NULL    | auto_increment |
+| patient_id        | int         | YES  | MUL | NULL    |                |
+| doctor_id         | int         | YES  | MUL | NULL    |                |
+| medication_id     | int         | YES  | MUL | NULL    |                |
+| prescription_date | date        | YES  |     | NULL    |                |
+| dosage            | varchar(50) | YES  |     | NULL    |                |
+| duration          | varchar(50) | YES  |     | NULL    |                |
++-------------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> table prescriptions;
++-----------------+------------+-----------+---------------+-------------------+----------+----------+
+| prescription_id | patient_id | doctor_id | medication_id | prescription_date | dosage   | duration |
++-----------------+------------+-----------+---------------+-------------------+----------+----------+
+|               1 |          1 |         5 |             1 | 2025-05-01        | 500mg    | 5 days   |
+|               2 |          2 |         6 |             2 | 2025-05-02        | 200mg    | 3 days   |
+|               3 |          3 |         7 |             3 | 2025-05-03        | 250mg    | 7 days   |
+|               4 |          4 |         8 |             4 | 2025-05-04        | 850mg    | 10 days  |
+|               5 |          5 |         9 |             5 | 2025-05-05        | 100mg    | 5 days   |
+|               6 |          6 |        10 |             6 | 2025-05-06        | 500mg    | 5 days   |
+|               7 |          7 |        11 |             7 | 2025-05-07        | 10mg     | 3 days   |
+|               8 |          8 |        12 |             8 | 2025-05-08        | 20mg     | 7 days   |
+|               9 |          9 |        13 |             9 | 2025-05-09        | 40mg     | 10 days  |
+|              10 |         10 |        14 |            10 | 2025-05-10        | 650mg    | 5 days   |
+|              11 |         11 |        15 |            11 | 2025-05-11        | 500mg    | 5 days   |
+|              12 |         12 |        16 |            12 | 2025-05-12        | 300mg    | 3 days   |
+|              13 |         13 |        17 |            13 | 2025-05-13        | 10 units | 15 days  |
+|              14 |         14 |        18 |            14 | 2025-05-14        | 20mg     | 30 days  |
+|              15 |         15 |        19 |            15 | 2025-05-15        | 50mg     | 10 days  |
+|              16 |         16 |        20 |            16 | 2025-05-16        | 2 puffs  | 7 days   |
+|              17 |         17 |        21 |            17 | 2025-05-17        | 10mg     | 5 days   |
+|              18 |         18 |        22 |            18 | 2025-05-18        | 50mcg    | 30 days  |
+|              19 |         19 |         1 |            19 | 2025-05-19        | 75mg     | 10 days  |
+|              20 |         20 |         2 |            20 | 2025-05-20        | 200mg    | 7 days   |
+|              21 |         21 |         3 |            21 | 2025-05-21        | 150mg    | 5 days   |
+|              22 |         22 |         4 |            22 | 2025-05-22        | 10mg     | 3 days   |
+|              23 |          3 |         6 |             1 | 2025-05-23        | 500mg    | 5 days   |
+|              24 |          5 |         7 |             2 | 2025-05-24        | 200mg    | 4 days   |
+|              25 |          8 |         9 |             3 | 2025-05-25        | 250mg    | 6 days   |
++-----------------+------------+-----------+---------------+-------------------+----------+----------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE DiagnosticTests (
+    ->     test_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     test_name VARCHAR(100),
+    ->     test_date DATE,
+    ->     result VARCHAR(100),
+    ->     status VARCHAR(20),   -- Pending / Completed
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id),
+    ->     FOREIGN KEY (doctor_id) REFERENCES Doctors(DoctorID)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO DiagnosticTests
+    -> (patient_id, doctor_id, test_name, test_date, result, status)
+    -> VALUES
+    -> (1,5,'Blood Test','2025-05-01','Normal','Completed'),
+    -> (2,6,'X-Ray','2025-05-02','Minor Fracture','Completed'),
+    -> (3,7,'MRI','2025-05-03','Issue Detected','Completed'),
+    -> (4,8,'Ultrasound','2025-05-04','Normal','Completed'),
+    -> (5,9,'CT Scan','2025-05-05','Serious Issue','Completed'),
+    ->
+    -> (6,10,'Blood Test','2025-05-06','High Sugar','Completed'),
+    -> (7,11,'ECG','2025-05-07','Normal','Completed'),
+    -> (8,12,'Hearing Test','2025-05-08','Mild Loss','Completed'),
+    -> (9,13,'X-Ray','2025-05-09','Normal','Completed'),
+    -> (10,14,'Psychiatric Evaluation','2025-05-10','Stable','Completed'),
+    ->
+    -> (11,15,'Cancer Screening','2025-05-11','Positive','Completed'),
+    -> (12,16,'Dental Checkup','2025-05-12','Cavity Found','Completed'),
+    -> (13,17,'Kidney Test','2025-05-13','Stone Detected','Completed'),
+    -> (14,18,'Eye Test','2025-05-14','Vision Weak','Completed'),
+    -> (15,19,'Heart Test','2025-05-15','Blockage','Completed'),
+    ->
+    -> (16,20,'Allergy Test','2025-05-16','Dust Allergy','Completed'),
+    -> (17,21,'Bone Density Test','2025-05-17','Weak Bones','Completed'),
+    -> (18,22,'Pregnancy Test','2025-05-18','Positive','Completed'),
+    -> (19,1,'Brain Scan','2025-05-19','Tumor Detected','Completed'),
+    -> (20,2,'Child Health Test','2025-05-20','Normal','Completed'),
+    ->
+    -> (21,3,'Blood Test','2025-05-21','Normal','Completed'),
+    -> (22,4,'ENT Checkup','2025-05-22','Infection','Completed'),
+    -> (3,6,'Follow-up MRI','2025-05-23','Improving','Completed'),
+    -> (5,7,'Neuro Test','2025-05-24','Stable','Completed'),
+    -> (8,9,'Routine Check','2025-05-25','Normal','Completed');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc diagnostictests;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| test_id    | int          | NO   | PRI | NULL    | auto_increment |
+| patient_id | int          | YES  | MUL | NULL    |                |
+| doctor_id  | int          | YES  | MUL | NULL    |                |
+| test_name  | varchar(100) | YES  |     | NULL    |                |
+| test_date  | date         | YES  |     | NULL    |                |
+| result     | varchar(100) | YES  |     | NULL    |                |
+| status     | varchar(20)  | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> table diagnostictests;
++---------+------------+-----------+------------------------+------------+----------------+-----------+
+| test_id | patient_id | doctor_id | test_name              | test_date  | result         | status    |
++---------+------------+-----------+------------------------+------------+----------------+-----------+
+|       1 |          1 |         5 | Blood Test             | 2025-05-01 | Normal         | Completed |
+|       2 |          2 |         6 | X-Ray                  | 2025-05-02 | Minor Fracture | Completed |
+|       3 |          3 |         7 | MRI                    | 2025-05-03 | Issue Detected | Completed |
+|       4 |          4 |         8 | Ultrasound             | 2025-05-04 | Normal         | Completed |
+|       5 |          5 |         9 | CT Scan                | 2025-05-05 | Serious Issue  | Completed |
+|       6 |          6 |        10 | Blood Test             | 2025-05-06 | High Sugar     | Completed |
+|       7 |          7 |        11 | ECG                    | 2025-05-07 | Normal         | Completed |
+|       8 |          8 |        12 | Hearing Test           | 2025-05-08 | Mild Loss      | Completed |
+|       9 |          9 |        13 | X-Ray                  | 2025-05-09 | Normal         | Completed |
+|      10 |         10 |        14 | Psychiatric Evaluation | 2025-05-10 | Stable         | Completed |
+|      11 |         11 |        15 | Cancer Screening       | 2025-05-11 | Positive       | Completed |
+|      12 |         12 |        16 | Dental Checkup         | 2025-05-12 | Cavity Found   | Completed |
+|      13 |         13 |        17 | Kidney Test            | 2025-05-13 | Stone Detected | Completed |
+|      14 |         14 |        18 | Eye Test               | 2025-05-14 | Vision Weak    | Completed |
+|      15 |         15 |        19 | Heart Test             | 2025-05-15 | Blockage       | Completed |
+|      16 |         16 |        20 | Allergy Test           | 2025-05-16 | Dust Allergy   | Completed |
+|      17 |         17 |        21 | Bone Density Test      | 2025-05-17 | Weak Bones     | Completed |
+|      18 |         18 |        22 | Pregnancy Test         | 2025-05-18 | Positive       | Completed |
+|      19 |         19 |         1 | Brain Scan             | 2025-05-19 | Tumor Detected | Completed |
+|      20 |         20 |         2 | Child Health Test      | 2025-05-20 | Normal         | Completed |
+|      21 |         21 |         3 | Blood Test             | 2025-05-21 | Normal         | Completed |
+|      22 |         22 |         4 | ENT Checkup            | 2025-05-22 | Infection      | Completed |
+|      23 |          3 |         6 | Follow-up MRI          | 2025-05-23 | Improving      | Completed |
+|      24 |          5 |         7 | Neuro Test             | 2025-05-24 | Stable         | Completed |
+|      25 |          8 |         9 | Routine Check          | 2025-05-25 | Normal         | Completed |
++---------+------------+-----------+------------------------+------------+----------------+-----------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Bill (
+    ->     bill_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     bill_date DATE,
+    ->     total_amount DECIMAL(10,2),
+    ->     status VARCHAR(20),   -- Paid / Unpaid
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id),
+    ->     FOREIGN KEY (doctor_id) REFERENCES Doctors(DoctorID)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO Bill
+    -> (patient_id, doctor_id, bill_date, total_amount, status)
+    -> VALUES
+    -> (1,5,'2025-05-01',5000,'Paid'),
+    -> (2,6,'2025-05-02',7000,'Paid'),
+    -> (3,7,'2025-05-03',12000,'Unpaid'),
+    -> (4,8,'2025-05-04',15000,'Paid'),
+    -> (5,9,'2025-05-05',30000,'Unpaid'),
+    ->
+    -> (6,10,'2025-05-06',4500,'Paid'),
+    -> (7,11,'2025-05-07',3500,'Paid'),
+    -> (8,12,'2025-05-08',6000,'Unpaid'),
+    -> (9,13,'2025-05-09',20000,'Paid'),
+    -> (10,14,'2025-05-10',8000,'Paid'),
+    ->
+    -> (11,15,'2025-05-11',35000,'Unpaid'),
+    -> (12,16,'2025-05-12',2500,'Paid'),
+    -> (13,17,'2025-05-13',18000,'Paid'),
+    -> (14,18,'2025-05-14',7000,'Paid'),
+    -> (15,19,'2025-05-15',40000,'Unpaid'),
+    ->
+    -> (16,20,'2025-05-16',5000,'Paid'),
+    -> (17,21,'2025-05-17',12000,'Paid'),
+    -> (18,22,'2025-05-18',15000,'Paid'),
+    -> (19,1,'2025-05-19',32000,'Unpaid'),
+    -> (20,2,'2025-05-20',9000,'Paid'),
+    ->
+    -> (21,3,'2025-05-21',6000,'Paid'),
+    -> (22,4,'2025-05-22',8000,'Paid'),
+    -> (3,6,'2025-05-23',14000,'Unpaid'),
+    -> (5,7,'2025-05-24',31000,'Paid'),
+    -> (8,9,'2025-05-25',10000,'Unpaid');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc bill;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| bill_id      | int           | NO   | PRI | NULL    | auto_increment |
+| patient_id   | int           | YES  | MUL | NULL    |                |
+| doctor_id    | int           | YES  | MUL | NULL    |                |
+| bill_date    | date          | YES  |     | NULL    |                |
+| total_amount | decimal(10,2) | YES  |     | NULL    |                |
+| status       | varchar(20)   | YES  |     | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> table bill;
++---------+------------+-----------+------------+--------------+--------+
+| bill_id | patient_id | doctor_id | bill_date  | total_amount | status |
++---------+------------+-----------+------------+--------------+--------+
+|       1 |          1 |         5 | 2025-05-01 |      5000.00 | Paid   |
+|       2 |          2 |         6 | 2025-05-02 |      7000.00 | Paid   |
+|       3 |          3 |         7 | 2025-05-03 |     12000.00 | Unpaid |
+|       4 |          4 |         8 | 2025-05-04 |     15000.00 | Paid   |
+|       5 |          5 |         9 | 2025-05-05 |     30000.00 | Unpaid |
+|       6 |          6 |        10 | 2025-05-06 |      4500.00 | Paid   |
+|       7 |          7 |        11 | 2025-05-07 |      3500.00 | Paid   |
+|       8 |          8 |        12 | 2025-05-08 |      6000.00 | Unpaid |
+|       9 |          9 |        13 | 2025-05-09 |     20000.00 | Paid   |
+|      10 |         10 |        14 | 2025-05-10 |      8000.00 | Paid   |
+|      11 |         11 |        15 | 2025-05-11 |     35000.00 | Unpaid |
+|      12 |         12 |        16 | 2025-05-12 |      2500.00 | Paid   |
+|      13 |         13 |        17 | 2025-05-13 |     18000.00 | Paid   |
+|      14 |         14 |        18 | 2025-05-14 |      7000.00 | Paid   |
+|      15 |         15 |        19 | 2025-05-15 |     40000.00 | Unpaid |
+|      16 |         16 |        20 | 2025-05-16 |      5000.00 | Paid   |
+|      17 |         17 |        21 | 2025-05-17 |     12000.00 | Paid   |
+|      18 |         18 |        22 | 2025-05-18 |     15000.00 | Paid   |
+|      19 |         19 |         1 | 2025-05-19 |     32000.00 | Unpaid |
+|      20 |         20 |         2 | 2025-05-20 |      9000.00 | Paid   |
+|      21 |         21 |         3 | 2025-05-21 |      6000.00 | Paid   |
+|      22 |         22 |         4 | 2025-05-22 |      8000.00 | Paid   |
+|      23 |          3 |         6 | 2025-05-23 |     14000.00 | Unpaid |
+|      24 |          5 |         7 | 2025-05-24 |     31000.00 | Paid   |
+|      25 |          8 |         9 | 2025-05-25 |     10000.00 | Unpaid |
++---------+------------+-----------+------------+--------------+--------+
+25 rows in set (0.00 sec)
+
+mysql> CREATE TABLE BillDetails (
+    ->     bill_detail_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     bill_id INT,
+    ->     item_name VARCHAR(100),   -- Medicine / Test / Room / Surgery
+    ->     quantity INT,
+    ->     price DECIMAL(10,2),
+    ->     amount DECIMAL(10,2),
+    ->
+    ->     FOREIGN KEY (bill_id) REFERENCES Bill(bill_id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO BillDetails
+    -> (bill_id, item_name, quantity, price, amount)
+    -> VALUES
+    -> (1,'Medicine',2,500,1000),
+    -> (1,'Test',1,1500,1500),
+    -> (1,'Room',1,2500,2500),
+    ->
+    -> (2,'Medicine',3,400,1200),
+    -> (2,'Test',2,2000,4000),
+    -> (2,'Consultation',1,1800,1800),
+    ->
+    -> (3,'Surgery',1,12000,12000),
+    -> (3,'Medicine',2,500,1000),
+    ->
+    -> (4,'Room',3,3000,9000),
+    -> (4,'Test',1,2000,2000),
+    -> (4,'Medicine',4,1000,4000),
+    ->
+    -> (5,'Surgery',1,30000,30000),
+    ->
+    -> (6,'Medicine',1,1000,1000),
+    -> (6,'Consultation',1,3500,3500),
+    ->
+    -> (7,'Test',1,2000,2000),
+    -> (7,'Medicine',3,500,1500),
+    ->
+    -> (8,'Room',2,2500,5000),
+    -> (8,'Test',1,1000,1000),
+    ->
+    -> (9,'Surgery',1,20000,20000),
+    ->
+    -> (10,'Medicine',2,2000,4000),
+    -> (10,'Consultation',1,4000,4000),
+    ->
+    -> (11,'Surgery',1,35000,35000),
+    ->
+    -> (12,'Medicine',1,1500,1500),
+    -> (12,'Test',1,1000,1000),
+    ->
+    -> (13,'Surgery',1,18000,18000),
+    ->
+    -> (14,'Consultation',1,3000,3000),
+    -> (14,'Medicine',2,2000,4000),
+    ->
+    -> (15,'Surgery',1,40000,40000);
+Query OK, 28 rows affected (0.02 sec)
+Records: 28  Duplicates: 0  Warnings: 0
+
+mysql> desc BillDetails;
++----------------+---------------+------+-----+---------+----------------+
+| Field          | Type          | Null | Key | Default | Extra          |
++----------------+---------------+------+-----+---------+----------------+
+| bill_detail_id | int           | NO   | PRI | NULL    | auto_increment |
+| bill_id        | int           | YES  | MUL | NULL    |                |
+| item_name      | varchar(100)  | YES  |     | NULL    |                |
+| quantity       | int           | YES  |     | NULL    |                |
+| price          | decimal(10,2) | YES  |     | NULL    |                |
+| amount         | decimal(10,2) | YES  |     | NULL    |                |
++----------------+---------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> table billdetails;
++----------------+---------+--------------+----------+----------+----------+
+| bill_detail_id | bill_id | item_name    | quantity | price    | amount   |
++----------------+---------+--------------+----------+----------+----------+
+|              1 |       1 | Medicine     |        2 |   500.00 |  1000.00 |
+|              2 |       1 | Test         |        1 |  1500.00 |  1500.00 |
+|              3 |       1 | Room         |        1 |  2500.00 |  2500.00 |
+|              4 |       2 | Medicine     |        3 |   400.00 |  1200.00 |
+|              5 |       2 | Test         |        2 |  2000.00 |  4000.00 |
+|              6 |       2 | Consultation |        1 |  1800.00 |  1800.00 |
+|              7 |       3 | Surgery      |        1 | 12000.00 | 12000.00 |
+|              8 |       3 | Medicine     |        2 |   500.00 |  1000.00 |
+|              9 |       4 | Room         |        3 |  3000.00 |  9000.00 |
+|             10 |       4 | Test         |        1 |  2000.00 |  2000.00 |
+|             11 |       4 | Medicine     |        4 |  1000.00 |  4000.00 |
+|             12 |       5 | Surgery      |        1 | 30000.00 | 30000.00 |
+|             13 |       6 | Medicine     |        1 |  1000.00 |  1000.00 |
+|             14 |       6 | Consultation |        1 |  3500.00 |  3500.00 |
+|             15 |       7 | Test         |        1 |  2000.00 |  2000.00 |
+|             16 |       7 | Medicine     |        3 |   500.00 |  1500.00 |
+|             17 |       8 | Room         |        2 |  2500.00 |  5000.00 |
+|             18 |       8 | Test         |        1 |  1000.00 |  1000.00 |
+|             19 |       9 | Surgery      |        1 | 20000.00 | 20000.00 |
+|             20 |      10 | Medicine     |        2 |  2000.00 |  4000.00 |
+|             21 |      10 | Consultation |        1 |  4000.00 |  4000.00 |
+|             22 |      11 | Surgery      |        1 | 35000.00 | 35000.00 |
+|             23 |      12 | Medicine     |        1 |  1500.00 |  1500.00 |
+|             24 |      12 | Test         |        1 |  1000.00 |  1000.00 |
+|             25 |      13 | Surgery      |        1 | 18000.00 | 18000.00 |
+|             26 |      14 | Consultation |        1 |  3000.00 |  3000.00 |
+|             27 |      14 | Medicine     |        2 |  2000.00 |  4000.00 |
+|             28 |      15 | Surgery      |        1 | 40000.00 | 40000.00 |
++----------------+---------+--------------+----------+----------+----------+
+28 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Encounters (
+    ->     encounter_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     patient_id INT,
+    ->     doctor_id INT,
+    ->     encounter_date DATE,
+    ->     encounter_type VARCHAR(50),   -- OPD / IPD / Emergency
+    ->     diagnosis VARCHAR(200),
+    ->     notes VARCHAR(200),
+    ->
+    ->     FOREIGN KEY (patient_id) REFERENCES Patient(Patient_id),
+    ->     FOREIGN KEY (doctor_id) REFERENCES Doctors(DoctorID)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO Encounters
+    -> (patient_id, doctor_id, encounter_date, encounter_type, diagnosis, notes)
+    -> VALUES
+    -> (1,5,'2025-05-01','OPD','Fever','Routine checkup'),
+    -> (2,6,'2025-05-02','IPD','Skin Infection','Admitted for treatment'),
+    -> (3,7,'2025-05-03','Emergency','Fracture','Accident case'),
+    -> (4,8,'2025-05-04','OPD','Pregnancy Check','Normal scan'),
+    -> (5,9,'2025-05-05','IPD','Brain Issue','Under observation'),
+    ->
+    -> (6,10,'2025-05-06','OPD','Child Fever','Mild infection'),
+    -> (7,11,'2025-05-07','OPD','General Checkup','Normal'),
+    -> (8,12,'2025-05-08','IPD','Ear Infection','Admitted'),
+    -> (9,13,'2025-05-09','OPD','Bone Pain','X-ray suggested'),
+    -> (10,14,'2025-05-10','Emergency','Mental Stress','Immediate care'),
+    ->
+    -> (11,15,'2025-05-11','IPD','Cancer Treatment','Ongoing therapy'),
+    -> (12,16,'2025-05-12','OPD','Dental Issue','Cavity found'),
+    -> (13,17,'2025-05-13','IPD','Kidney Stone','Surgery required'),
+    -> (14,18,'2025-05-14','OPD','Eye Check','Weak eyesight'),
+    -> (15,19,'2025-05-15','Emergency','Heart Problem','Critical condition'),
+    ->
+    -> (16,20,'2025-05-16','OPD','Allergy','Dust allergy detected'),
+    -> (17,21,'2025-05-17','IPD','Bone Injury','Fracture treatment'),
+    -> (18,22,'2025-05-18','IPD','Delivery Case','Successful delivery'),
+    -> (19,1,'2025-05-19','Emergency','Brain Tumor','Immediate surgery'),
+    -> (20,2,'2025-05-20','OPD','Child Care','Routine check'),
+    ->
+    -> (21,3,'2025-05-21','OPD','Fever','Normal case'),
+    -> (22,4,'2025-05-22','IPD','ENT Infection','Treatment ongoing'),
+    -> (3,6,'2025-05-23','IPD','Fracture Follow-up','Healing stage'),
+    -> (5,7,'2025-05-24','Emergency','Neuro Issue','Critical monitoring'),
+    -> (8,9,'2025-05-25','OPD','Follow-up','Stable condition');
+Query OK, 25 rows affected (0.02 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> desc encounters;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| encounter_id   | int          | NO   | PRI | NULL    | auto_increment |
+| patient_id     | int          | YES  | MUL | NULL    |                |
+| doctor_id      | int          | YES  | MUL | NULL    |                |
+| encounter_date | date         | YES  |     | NULL    |                |
+| encounter_type | varchar(50)  | YES  |     | NULL    |                |
+| diagnosis      | varchar(200) | YES  |     | NULL    |                |
+| notes          | varchar(200) | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> table encounters;
++--------------+------------+-----------+----------------+----------------+--------------------+------------------------+
+| encounter_id | patient_id | doctor_id | encounter_date | encounter_type | diagnosis          | notes                  |
++--------------+------------+-----------+----------------+----------------+--------------------+------------------------+
+|            1 |          1 |         5 | 2025-05-01     | OPD            | Fever              | Routine checkup        |
+|            2 |          2 |         6 | 2025-05-02     | IPD            | Skin Infection     | Admitted for treatment |
+|            3 |          3 |         7 | 2025-05-03     | Emergency      | Fracture           | Accident case          |
+|            4 |          4 |         8 | 2025-05-04     | OPD            | Pregnancy Check    | Normal scan            |
+|            5 |          5 |         9 | 2025-05-05     | IPD            | Brain Issue        | Under observation      |
+|            6 |          6 |        10 | 2025-05-06     | OPD            | Child Fever        | Mild infection         |
+|            7 |          7 |        11 | 2025-05-07     | OPD            | General Checkup    | Normal                 |
+|            8 |          8 |        12 | 2025-05-08     | IPD            | Ear Infection      | Admitted               |
+|            9 |          9 |        13 | 2025-05-09     | OPD            | Bone Pain          | X-ray suggested        |
+|           10 |         10 |        14 | 2025-05-10     | Emergency      | Mental Stress      | Immediate care         |
+|           11 |         11 |        15 | 2025-05-11     | IPD            | Cancer Treatment   | Ongoing therapy        |
+|           12 |         12 |        16 | 2025-05-12     | OPD            | Dental Issue       | Cavity found           |
+|           13 |         13 |        17 | 2025-05-13     | IPD            | Kidney Stone       | Surgery required       |
+|           14 |         14 |        18 | 2025-05-14     | OPD            | Eye Check          | Weak eyesight          |
+|           15 |         15 |        19 | 2025-05-15     | Emergency      | Heart Problem      | Critical condition     |
+|           16 |         16 |        20 | 2025-05-16     | OPD            | Allergy            | Dust allergy detected  |
+|           17 |         17 |        21 | 2025-05-17     | IPD            | Bone Injury        | Fracture treatment     |
+|           18 |         18 |        22 | 2025-05-18     | IPD            | Delivery Case      | Successful delivery    |
+|           19 |         19 |         1 | 2025-05-19     | Emergency      | Brain Tumor        | Immediate surgery      |
+|           20 |         20 |         2 | 2025-05-20     | OPD            | Child Care         | Routine check          |
+|           21 |         21 |         3 | 2025-05-21     | OPD            | Fever              | Normal case            |
+|           22 |         22 |         4 | 2025-05-22     | IPD            | ENT Infection      | Treatment ongoing      |
+|           23 |          3 |         6 | 2025-05-23     | IPD            | Fracture Follow-up | Healing stage          |
+|           24 |          5 |         7 | 2025-05-24     | Emergency      | Neuro Issue        | Critical monitoring    |
+|           25 |          8 |         9 | 2025-05-25     | OPD            | Follow-up          | Stable condition       |
++--------------+------------+-----------+----------------+----------------+--------------------+------------------------+
+25 rows in set (0.00 sec)
+
+mysql>
